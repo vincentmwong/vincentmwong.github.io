@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Music on Vincent Wong</title>
+    <link>http://www.vmwong.net/music/</link>
+    <description>Recent content in Music on Vincent Wong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 May 2018 23:14:19 -0400</lastBuildDate>
+    
+	<atom:link href="http://www.vmwong.net/music/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

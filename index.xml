@@ -2,12 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vincent Wong</title>
-    <link>http://example.org/</link>
+    <link>http://www.vmwong.net/</link>
     <description>Recent content on Vincent Wong</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Mon, 14 May 2018 22:27:08 -0400</lastBuildDate>
     
-	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.vmwong.net/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

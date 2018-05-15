@@ -3,27 +3,47 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/authors/</loc>
+    <loc>http://www.vmwong.net/music/</loc>
+    <lastmod>2018-05-14T23:14:19-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.vmwong.net/</loc>
+    <lastmod>2018-05-14T22:27:08-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.vmwong.net/resume/</loc>
+    <lastmod>2018-05-14T22:02:44-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.vmwong.net/publications/</loc>
+    <lastmod>2018-05-14T22:02:34-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.vmwong.net/projects/</loc>
+    <lastmod>2018-05-14T22:02:27-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.vmwong.net/authors/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
+    <loc>http://www.vmwong.net/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/series/</loc>
+    <loc>http://www.vmwong.net/series/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://example.org/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.org/</loc>
+    <loc>http://www.vmwong.net/tags/</loc>
     <priority>0</priority>
   </url>
   
