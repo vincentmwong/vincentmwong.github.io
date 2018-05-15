@@ -3,24 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-<<<<<<< HEAD
     <loc>http://example.org/authors/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-=======
->>>>>>> b471ddcbb6155f365d87f7ddf3b6d169a1eb8334
     <loc>http://example.org/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-<<<<<<< HEAD
     <loc>http://example.org/series/</loc>
-=======
-    <loc>http://example.org/</loc>
->>>>>>> b471ddcbb6155f365d87f7ddf3b6d169a1eb8334
     <priority>0</priority>
   </url>
   
@@ -29,12 +22,9 @@
     <priority>0</priority>
   </url>
   
-<<<<<<< HEAD
   <url>
     <loc>http://example.org/</loc>
     <priority>0</priority>
   </url>
   
-=======
->>>>>>> b471ddcbb6155f365d87f7ddf3b6d169a1eb8334
 </urlset>

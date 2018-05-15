@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-<<<<<<< HEAD
     <title>Tags on Vincent Wong</title>
     <link>http://example.org/tags/</link>
     <description>Recent content in Tags on Vincent Wong</description>
-=======
-    <title>Tags on My New Hugo Site</title>
-    <link>http://example.org/tags/</link>
-    <description>Recent content in Tags on My New Hugo Site</description>
->>>>>>> b471ddcbb6155f365d87f7ddf3b6d169a1eb8334
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
