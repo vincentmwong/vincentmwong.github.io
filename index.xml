@@ -2,14 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Vincent Wong</title>
-    <link>http://www.vmwong.net/</link>
+    <link>https://vmwong.net/</link>
     <description>Recent content on Vincent Wong</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en-US</language>
     <lastBuildDate>Mon, 14 May 2018 22:27:08 -0400</lastBuildDate>
     
-	<atom:link href="http://www.vmwong.net/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vmwong.net/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Effects of Banning Content on the Structure of Online Hate Communities</title>
+      <link>https://vmwong.net/projects/effects_of_bans_on_reddit/</link>
+      <pubDate>Sat, 19 May 2018 23:25:35 -0400</pubDate>
+      
+      <guid>https://vmwong.net/projects/effects_of_bans_on_reddit/</guid>
+      <description>Does banning stuff work? Even though the internet is renowned for being a cesspool of hate, a lot of media platforms (Facebook, Twitter, Reddit, Discord) have been cracking down on this kind of content by banning people or communities associated with certain movements. But there&amp;rsquo;s one big unanswered question: Is it working?
+In some cases, these communities backlash and have a hydra-like effect: cut off one hand and two more spring up in its place.</description>
+    </item>
+    
+    <item>
+      <title>Gaspard de la Nuit: Ondine</title>
+      <link>https://vmwong.net/music/gaspard-de-la-nuit_ondine/</link>
+      <pubDate>Tue, 15 May 2018 19:11:46 -0400</pubDate>
+      
+      <guid>https://vmwong.net/music/gaspard-de-la-nuit_ondine/</guid>
+      <description>Gaspard de la Nuit is a three movement suite for piano by Maurice Ravel, based on poems by Aloysius Bertrand. Ravel is notorious for his craftsmanship; this piece is not only perfectly constructed harmony but also very ergonomic for the piano.
+
+Ondine
+ By Aloysius Bertrand
+&amp;rdquo; Ecoute ! - Ecoute ! - C&amp;rsquo;est moi, c&amp;rsquo;est Ondine qui frôle de ces gouttes d&amp;rsquo;eau les losanges sonores de ta fenêtre illuminée par les mornes rayons de la lune ; et voici, en robe de moire, la dame châtelaine qui</description>
+    </item>
+    
+    <item>
+      <title>Publications</title>
+      <link>https://vmwong.net/publications/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vmwong.net/publications/publications/</guid>
+      <description> Wong V, Cooney D, Bar-Yam Y. Beyond Contact Tracing: Community-Based Early Detection for Ebola Response. PLOS Currents Outbreaks. 2016 May 19. Edition 1. doi: 10.1371/currents.outbreaks.322427f4c3cc2b9c1a5b3395e7d20894. (TIME article)
+ Wong V, Bar-Yam Y. How do people differ? A social media approach. 2017 Aug 9. arXiv:1708.02900
+  </description>
+    </item>
     
   </channel>
 </rss>

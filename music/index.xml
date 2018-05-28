@@ -2,14 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Music on Vincent Wong</title>
-    <link>http://www.vmwong.net/music/</link>
+    <link>https://vmwong.net/music/</link>
     <description>Recent content in Music on Vincent Wong</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>en-US</language>
     <lastBuildDate>Mon, 14 May 2018 23:14:19 -0400</lastBuildDate>
     
-	<atom:link href="http://www.vmwong.net/music/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vmwong.net/music/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gaspard de la Nuit: Ondine</title>
+      <link>https://vmwong.net/music/gaspard-de-la-nuit_ondine/</link>
+      <pubDate>Tue, 15 May 2018 19:11:46 -0400</pubDate>
+      
+      <guid>https://vmwong.net/music/gaspard-de-la-nuit_ondine/</guid>
+      <description>Gaspard de la Nuit is a three movement suite for piano by Maurice Ravel, based on poems by Aloysius Bertrand. Ravel is notorious for his craftsmanship; this piece is not only perfectly constructed harmony but also very ergonomic for the piano.
+
+Ondine
+ By Aloysius Bertrand
+&amp;rdquo; Ecoute ! - Ecoute ! - C&amp;rsquo;est moi, c&amp;rsquo;est Ondine qui frôle de ces gouttes d&amp;rsquo;eau les losanges sonores de ta fenêtre illuminée par les mornes rayons de la lune ; et voici, en robe de moire, la dame châtelaine qui</description>
+    </item>
     
   </channel>
 </rss>

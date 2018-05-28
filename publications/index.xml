@@ -2,14 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Publications on Vincent Wong</title>
-    <link>http://www.vmwong.net/publications/</link>
+    <link>https://vmwong.net/publications/</link>
     <description>Recent content in Publications on Vincent Wong</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 14 May 2018 22:02:34 -0400</lastBuildDate>
+    <language>en-US</language>
     
-	<atom:link href="http://www.vmwong.net/publications/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://vmwong.net/publications/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Publications</title>
+      <link>https://vmwong.net/publications/publications/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://vmwong.net/publications/publications/</guid>
+      <description> Wong V, Cooney D, Bar-Yam Y. Beyond Contact Tracing: Community-Based Early Detection for Ebola Response. PLOS Currents Outbreaks. 2016 May 19. Edition 1. doi: 10.1371/currents.outbreaks.322427f4c3cc2b9c1a5b3395e7d20894. (TIME article)
+ Wong V, Bar-Yam Y. How do people differ? A social media approach. 2017 Aug 9. arXiv:1708.02900
+  </description>
+    </item>
     
   </channel>
 </rss>

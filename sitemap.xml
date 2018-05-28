@@ -3,47 +3,51 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://www.vmwong.net/music/</loc>
+    <loc>https://vmwong.net/projects/effects_of_bans_on_reddit/</loc>
+    <lastmod>2018-05-19T23:25:35-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://vmwong.net/music/gaspard-de-la-nuit_ondine/</loc>
+    <lastmod>2018-05-15T19:11:46-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://vmwong.net/music/</loc>
     <lastmod>2018-05-14T23:14:19-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/</loc>
+    <loc>https://vmwong.net/</loc>
     <lastmod>2018-05-14T22:27:08-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/resume/</loc>
+    <loc>https://vmwong.net/resume/</loc>
     <lastmod>2018-05-14T22:02:44-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/publications/</loc>
-    <lastmod>2018-05-14T22:02:34-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://www.vmwong.net/projects/</loc>
+    <loc>https://vmwong.net/projects/</loc>
     <lastmod>2018-05-14T22:02:27-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/authors/</loc>
+    <loc>https://vmwong.net/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/categories/</loc>
+    <loc>https://vmwong.net/publications/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/series/</loc>
-    <priority>0</priority>
+    <loc>https://vmwong.net/publications/publications/</loc>
   </url>
   
   <url>
-    <loc>http://www.vmwong.net/tags/</loc>
+    <loc>https://vmwong.net/tags/</loc>
     <priority>0</priority>
   </url>
   
