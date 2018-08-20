@@ -1,106 +1,52 @@
-<!DOCTYPE html>
-<html lang="en-US">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="map[]" />
-    <meta name="description" content="Professional Website">
-    <link rel="shortcut icon" type="image/x-icon" href="https://vmwong.netimg/favicon.ico">
-    <title>Vincent Wong</title>
-    <meta name="generator" content="Hugo 0.41" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="https://vmwong.netcss/main.css" />
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,200bold,400old" />
+<html>
+    <head>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300i|Montserrat|Rubik" rel="stylesheet">
+	<style>
+	 img {
+	     border-radius: 50%;
+	     height: 30%;
+	 }
+
+	 p.nameplate {
+	     font-family: 'Rubik', sans-serif;
+	     font-size: 45px;
+	     margin-bottom: 0px;
+	     margin-top: 0px;
+	 }
+
+	 p.subnameplate {
+	     font-family: 'Lato', sans-serif;
+	     font-size: 25px;
+	     margin-top: 0px;
+	     margin-bottom: 0px;
+	 }
+
+	 p.descriptionbody {
+	     font-family: 'Montserrat', sans-serif;
+	     font-size: 18px;
+	 }
+	</style>
+    </head>
     
-    <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-
-    
-  </head>
-
-  <body>
-    <div id="wrap">
-      <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://vmwong.net"><i class="fa fa-home"></i></a>
-    </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-      
-        
-        <li><a href="/music/">MUSIC</a></li>
-        
-        <li><a href="/wong_cv.pdf/">RESUME</a></li>
-        
-        <li><a href="/publications/publications/">PUBLICATIONS</a></li>
-        
-        <li><a href="/projects/">PROJECTS</a></li>
-        
-      
-      </ul>
-    </div>
-  </div>
-</nav>
-
-      <section id="about">
-        <div class="container">
-        <div class="avatar">
-          <img class="img-circle" src="https://vmwong.netimg/temp_pic.jpg" alt="Responsive image">
-        </div>
-	<div class="homepage-content">
-          
-          <h3><p>I&rsquo;m <strong>Vincent Wong</strong>, a PhD student in Informatics (Complex Systems) and Cognitive Science, and a fellow of the <a href="https://cns-nrt.indiana.edu" style="color:rgb(69, 102, 155)">NSF Research Traineeship</a>.</p>
-
-<p>My research focuses on understanding how this larger-scale social behavior can arise out of the dynamic psychology of a single person.</p>
-</h3>
+    <body>
+	<div id="main_div" class='w3-animate-opacity' style="position:absolute; width:35%; margin-top: 5%;">
+	    <center>
+		<p><img src = "face.jpg" alt="Avatar"></img> </p>
+		<p class="nameplate">Vincent Wong</p>
+		<p class="subnameplate">Informatics (Complex Systems) & Cognitive Science</p>
+		<p class="subnameplate" style="font-size: 22px;"> PhD Student and <a href="https://cns-nrt.indiana.edu" >NSF Research Trainee</a></p>
+		<p class="descriptionbody">I research how group behaviors arise from individual, psychologically driven actions. My work focuses on using network science, large-scale social media data.</p>
+		<p style="font-size: 20px;margin-top: 7%;">Research (Coming soon) <font color="red"><b>|</b></font> <a href="wong_cv.pdf">Resume</a> <font color="red"><b>|</b></font> Misc (Coming soon)</p>
+	    </center>
 	</div>
-        <div class="social">
-  <ul class="social-links">
-    
-      <li><a href="http://github.com/vincentmwong"><i class="fa fa-github"></i></a></li>
-    
+    </body>
 
-    
-      <li><a href="mailto:vmwong@indiana.edu"><i class="fa fa-envelope"></i></a></li>
-    
+    <script>
+     var main_div = document.getElementById("main_div");
+     main_div.style.left = '50%';
+     main_div.style.marginLeft = -1*main_div.offsetWidth/2;
+    </script>
 
-    
-
-    
-      <li><a href="http://linkedin.com/in/vincentmwong"><i class="fa fa-linkedin"></i></a></li>
-    
-
-    
-  </ul>
-</div>
-
-        </div>
-      </section>
-    </div>
-    <footer>
-  <div id="footer">
-    <div class="container">
-      <p class="text-muted">&copy; All rights reserved. Powered by <a href="https://gohugo.io/">Hugo</a> and
-      <a href="http://www.github.com/nurlansu/hugo-sustain/">sustain</a> with ♥</p>
-    </div>
-  </div>
-</footer>
-<div class="footer"></div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<script src="https://vmwong.netjs/docs.min.js"></script>
-<script src="https://vmwong.netjs/main.js"></script>
-
-<script src="https://vmwong.netjs/ie10-viewport-bug-workaround.js"></script>
-
-
-  </body>
 </html>
