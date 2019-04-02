@@ -79,8 +79,14 @@ jsPsych.plugins["scosn-interface"] = (function() {
 
 	//Getting images from folder
 	var folder = "data/"+trial.network+"/"+trial.user+"/img/";
+	var imp = imagemap[trial.user];
 
-	$.ajax({
+	for (i=0;i<imp.length;i++){
+	    val = imp[i];
+	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;cursor: pointer;border-bottom: 7px solid;border-radius: 8px;' id="+val+" name='imageContent'>";
+	}
+	
+	/*$.ajax({
 	    url : folder,
 	    success: function (data) {
 		$(data).find("a").attr("href", function (i, val) {
@@ -90,7 +96,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		});
 	    },
 	    async: false
-	});
+	});*/
 	new_html += "</div>";
 
 	/*------------------------------------
