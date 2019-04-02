@@ -78,7 +78,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
  id='imageContent' style='border: "+imagediv.border+"; height: "+imagediv.height+"; width: "+imagediv.width+"; float: left;overflow-y: scroll;display:inline-block;'>";
 
 	//Getting images from folder
-	var folder = "Experiment/data/"+trial.network+"/"+trial.user+"/img/";
+	var folder = "data/"+trial.network+"/"+trial.user+"/img/";
 
 	$.ajax({
 	    url : folder,
