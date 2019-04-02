@@ -1,0 +1,62 @@
+jsPsych.plugins["SCoSN-interface"] = (function() {
+
+  var plugin = {};
+
+  plugin.info = {
+    name: "SCoSC-interface",
+    parameters: {
+      stimulus_duration: {
+        type: jsPsych.plugins.parameterType.INT,
+        pretty_name: 'Stimulus duration',
+        default: null,
+        description: 'How long to hide the stimulus.'
+      },
+      trial_duration: {
+        type: jsPsych.plugins.parameterType.INT,
+        pretty_name: 'Trial duration',
+        default: null,
+        description: 'How long to show trial before it ends.'
+      }
+    }
+  }
+
+  plugin.trial = function(display_element, trial) {
+
+      //Interactive interface, will output data with buttons
+
+      //Changing users
+      //Output data IF shifting to another person OR ending trials
+
+    // data saving
+    var trial_data = {
+      parameter_name: 'parameter value'
+    };
+
+    // end trial
+    var end_trial = function() {
+
+      // kill any remaining setTimeout handlers
+      jsPsych.pluginAPI.clearAllTimeouts();
+
+      // kill keyboard listeners
+      if (typeof keyboardListener !== 'undefined') {
+        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
+      }
+
+      // gather the data to store for the trial
+      var trial_data = {
+        "rt": response.rt,
+        "stimulus": trial.stimulus,
+        "key_press": response.key
+      };
+
+      // clear the display
+      display_element.innerHTML = '';
+
+      // move on to the next trial
+      jsPsych.finishTrial(trial_data);
+    };
+  };
+
+  return plugin;
+})();

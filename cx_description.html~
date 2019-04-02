@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>What is a complex system?</title>
+</head>
+<body>
+
+<h1>What is a complex system?</h1>
+<p>
+Across many different traditional fields and topics, there is a common theme of there being many individual "things" or agents coming together and interacting with each other in a way that results in higher-scale patterns. Particularly, it seems these things do them without anyone telling them how to organize to get the result: they just self-organize. Examples of this would be like proteins and other particles creating cells, cells coming together to create multicellular organisms, neurons interacting to create the brain, or people interacting to create society. 
+</p>
+
+<p>
+These patterns are often nonlinear, they can be recursive, they can have properties of fractals, they evolve through time without ever reaching an equilibrium, and they can't be reduced to just the sum of their parts. These patterns are also often common across different specific systems. For example, fluid dynamics has been used to model human foot traffic flow. In many cases, the fields that study these particular systems have dealt with these complexities by working first with simplified models that remove the complexity. They often make assumptions about agents being completely independent in their actions (which is clearly not true in any system except for maybe ideal gases), or that properties or values are normally distributed (everything has a bell curve). Individual fields have many different ways of overcoming these assumptions to understand the systems they study, but many of the methods that introduce complexity into the models can be common across fields. 
+</p>
+
+<p>
+Complex systems integrates the bottom-up and top-down perspectives to take a holistic approach to understanding systems. It isn't a very well-defined field because it spans so many specific topics, so you'll find complex systems people everywhere. For a complex systems scientist with a computational background, machine learning might be one of a suite of tools to understand the political motives and behaviors of individuals and how it affects the political process. Here's a really good visualization of the kinds of topics that you'd learn about in complex systems: https://upload.wikimedia.org/wikipedia/commons/d/de/Complex_systems_organizational_map.jpg
+</p>
+
+</body>
+</html>
