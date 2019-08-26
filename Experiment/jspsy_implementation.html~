@@ -141,11 +141,11 @@
      var instructions = {
 	 type: 'html-button-response',
 	 stimulus: "<div class='w3-animate-opacity' style='width:65%;display:inline-block;'>\
-	 <p>INTRODUCTION: <br> For this study, you will be presented with content from an online social network. You will be shown different users, the images on their page, and that user's friends.</p>\
-<p>You will be able to click on a user's friends to go to that profile and view images on that profile. You will be able to indicate that you like an image by clicking on it. Images you've liked will turn green (see example below).</p>\
+	 <p><b>INTRODUCTION</b>: <br> For this study, you will be presented with content from an online social network. You will be shown different user profiles, the images they have shared on their page, and that user's friends.</p>\
+<p>You will be able to freely click on a user's friends to go to that person's profile. If you like any images, you can click on the image to indicate that you like it. Images you've liked will turn green (see example below).</p>\
 <p><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;'><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid green;border-radius: 8px;opacity: 0.75;'></p>\
-	 <p>TASK: Your goal is to get a sense of the social groups in the network by visiting profiles and clicking on images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress and activate when you have visited the required number of profiles.</p>\
-	 <p>SURVEY: After you explore the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed (previews of their profiles will be provided).</p>\
+	 <p><b><i>TASK</i></b>: Your goal is to click around to different profiles. Try to get a sense of the social groups in the network by visiting profiles and clicking on any images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress. When you've visited enough profiles, the button will turn green and you will be able to go on to the survey. </p>\
+	 <p><b><i>SURVEY</i></b>: After you are done exploring the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed. You are not required to memorize any content, and you will be provided with the necessary information to answer questions.</p>\
 	 <p><i>Press the button below to start the study.</i></p></div>",
 	 choices: ['Begin!'],
 	 post_trial_gap: 250
@@ -182,6 +182,11 @@
      //break_point_1 is implicitly embedded in the scosn interface
 
      //Transition from survey instructions to close knit questions
+     var break_point_00 = {
+         type: 'html-keyboard-response',
+	 stimulus: "END",
+     }
+     
      var break_point_2 = {
 	 type: 'html-keyboard-response',
 	 stimulus: "",
@@ -207,7 +212,7 @@
 	 stimulus: "BREAK POINT 4",
 	 choices: jsPsych.NO_KEYS,
 	 trial_duration: 1000,
-	 on_finish: static_conclusion_appender
+	 //on_finish: static_conclusion_appender
      };
      
      /*---------------------------------
@@ -227,7 +232,7 @@
 		 }]
 	     }, jsPsych.resumeExperiment);
 	 } else {
-	     jsPsych.addNodeToEndOfTimeline(break_point_2, jsPsych.resumeExperiment);
+	     jsPsych.addNodeToEndOfTimeline(break_point_00, jsPsych.data.displayData());
 	 }
      }
 

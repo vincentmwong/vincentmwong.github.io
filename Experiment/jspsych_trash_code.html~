@@ -1,0 +1,36 @@
+     function getVisitedIcons(){
+	 //Get the images that the user visited and show them
+	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
+	 let iconset = new Set();
+	 for (i=0;i<usernames.length;i++){
+	     iconset.add( usernames[i].substring( usernames[i].match(/_/).index+1, usernames[i].length ).toLowerCase() );
+	 }
+	 let iconsetarr = Array.from(iconset);
+	 var icons_html = "<div class='w3-animate-opacity'>";
+	 icons_html += "<p>";// class='w3-animate-opacity' style='width:45%;display:inline-block;'><p>";
+	 for (i=0;i<iconsetarr.length;i++){
+	     icons_html += "<img src='animal-collection/png/"+iconsetarr[i]+".png' id='"+iconsetarr[i]+"' name='animalIcons' style='width:auto;height:100px;'>";
+	 }
+	 icons_html += "</p>";
+	 icons_html += "<p>Please select the icons above that you found to be part of close-knit communities.</p>";
+	 icons_html += "</div>";
+	 document.getElementById('ismasirblabla').innerHTML = icons_html;
+
+	 let selected_images = new Set();
+	 
+	 //Give the images the ability to be clicked
+	 var images = document.getElementsByName("animalIcons");
+	 for (i=0;i<images.length;i++){
+	     images[i].addEventListener("click", function() {
+		 if (this.style.opacity==""){
+		     this.style.opacity = '0.5';
+		     selected_images.add(this.id);
+		     jsPsych.data.addProperties({"selectedAnimals":Array.from(selected_images)});
+		 } else if (this.style.opacity=='0.5'){
+		     this.style.opacity = "";
+		     selected_images.delete(this.id);
+		     jsPsych.data.addProperties({"selectedAnimals":Array.from(selected_images)});
+		 }
+	     }, false);
+	 }
+     }

@@ -58,9 +58,10 @@ jsPsych.plugins["scosn-interface"] = (function() {
 	if (previous_user!=undefined && previous_user.user!=undefined){
 	    var previous_username = previous_user.user.substring( 0, previous_user.user.match(/_/) );
 	    var imagename = previous_user.user.substring( previous_user.user.match(/_/).index+1, previous_user.user.length ).toLowerCase();
+	    /* THE TWO FOLLOWING LINES ADD IN THE BACK BUTTON. MAKE SURE TO TURN ON FUNCTIONATILY FOR IT AT THE BOTTOM OF THIS CODE. 
 	    new_html += "<p style='float: left;font-size:100%;opacity:0.4;'>\
 <img src='animal-collection/png/"+imagename+".png' id='prevUser' style='width:auto;height:70px; cursor: pointer;'>";
-	    new_html += "  "+previous_username+"</p>";
+	    new_html += "  "+previous_username+"</p>";*/
 	}
 	var username = trial.user.substring( 0, trial.user.match(/_/).index );
 	var imagename = trial.user.substring( trial.user.match(/_/).index+1, trial.user.length ).toLowerCase();
@@ -77,7 +78,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
  id='imageContent' style='border: "+imagediv.border+"; height: "+imagediv.height+"; width: "+imagediv.width+"; float: left;overflow-y: scroll;display:inline-block;'>";
 
 	//Getting images from folder
-	var folder = "data/"+trial.network+"/"+username+"/img/";
+	var folder = "data/"+trial.network+"/"+trial.user+"/img/";
 
 	$.ajax({
 	    url : folder,
@@ -97,7 +98,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 	   -------------------------------------*/
 	new_html += "<div\
  id='friendslist' name='friendslist' style='border: "+friendlistdiv.border+"; height: "+friendlistdiv.height+"; width: "+friendlistdiv.width+"; float: right; overflow-y: scroll;'>";
-	new_html += "<p>Friends</p>";
+	new_html += "<p><h1>Friends</h1></p>";
 	//Get list of friends from friendlists.js file
 	var fl = friendlist[trial.user];
 	
@@ -105,8 +106,8 @@ jsPsych.plugins["scosn-interface"] = (function() {
 	for (i=0;i<fl.length;i++){
 	    var fl_username = fl[i].substring( 0, fl[i].match(/_/).index);
 	    var imagename = fl[i].substring( fl[i].match(/_/).index+1, fl[i].length ).toLowerCase();
-	    new_html += "<p align='left' style='font-size:130%;'>\
-<img src='animal-collection/png/"+imagename+".png' style='width:auto;height:75px;cursor:pointer;' id='"+fl[i]+"' name='friendContent'>";
+	    new_html += "<p align='left' style='font-size:130%;' name='friendContent' id='"+fl[i]+"'>\
+<img src='animal-collection/png/"+imagename+".png'>"; /* style='width:auto;height:75px;cursor:pointer;'>";*/
 	    /* new_html += "<svg width='70px' height='70px'>\
 	       <rect id='"+fl[i]+"' name='friendContent' width='70px' height='70px' style='fill:rgb(0,"+(i-1)*50+",0)'>\
 	       </svg>"; */
@@ -212,13 +213,13 @@ jsPsych.plugins["scosn-interface"] = (function() {
 	}
 
 	//Set up previous user functionality
-	if (previous_user!=undefined && previous_user.user!=undefined){
+	/*if (previous_user!=undefined && previous_user.user!=undefined){
 	    var prev_user_img = document.getElementById("prevUser");
 	    prev_user_img.addEventListener("click", function(){
 		next_person = previous_user.user;
 		end_trial();
 	    }, false);
-	}
+	}*/
 
 	//Set up image clicking behavior
 	var images = document.getElementsByName("imageContent");

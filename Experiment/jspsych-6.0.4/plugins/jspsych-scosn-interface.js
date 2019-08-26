@@ -79,14 +79,8 @@ jsPsych.plugins["scosn-interface"] = (function() {
 
 	//Getting images from folder
 	var folder = "data/"+trial.network+"/"+trial.user+"/img/";
-	var imp = imagemap[trial.user];
 
-	for (i=0;i<imp.length;i++){
-	    val = imp[i];
-	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;cursor: pointer;border-bottom: 7px solid;border-radius: 8px;' id="+val+" name='imageContent'>";
-	}
-	
-	/*$.ajax({
+	$.ajax({
 	    url : folder,
 	    success: function (data) {
 		$(data).find("a").attr("href", function (i, val) {
@@ -96,7 +90,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		});
 	    },
 	    async: false
-	});*/
+	});
 	new_html += "</div>";
 
 	/*------------------------------------
@@ -117,7 +111,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 	    /* new_html += "<svg width='70px' height='70px'>\
 	       <rect id='"+fl[i]+"' name='friendContent' width='70px' height='70px' style='fill:rgb(0,"+(i-1)*50+",0)'>\
 	       </svg>"; */
-	    new_html += "  "+fl_username+"</p>";
+	    new_html += "  <span style='cursor:pointer'>"+fl_username+"</span></p>";
 	    //new_html += "<br>";
 	}
 	new_html += "</div>";

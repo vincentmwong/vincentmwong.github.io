@@ -19,10 +19,10 @@
 	<script src="jspsych-6.0.4/plugins/jspsych-survey-likert.js"></script>
 	<script src="jspsych-6.0.4/plugins/jspsych-survey-text.js"></script>
 	<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-choice.js"></script>
+	<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-select.js"></script>
 	<script src="jspsych-6.0.4/plugins/jspsych-instructions.js"></script>
 	<script src="jspsych-6.0.4/plugins/jspsych-scosn-interface.js"></script>
 	<script src="networks/friendslist_0.js"></script>
-	<script src="networks/imagemap.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
@@ -142,11 +142,11 @@
      var instructions = {
 	 type: 'html-button-response',
 	 stimulus: "<div class='w3-animate-opacity' style='width:65%;display:inline-block;'>\
-	 <p>INTRODUCTION: <br> For this study, you will be presented with content from an online social network. You will be shown different users, the images on their page, and that user's friends.</p>\
-<p>You will be able to click on a user's friends to go to that profile and view images on that profile. You will be able to indicate that you like an image by clicking on it. Images you've liked will turn green (see example below).</p>\
+	 <p><b>INTRODUCTION</b>: <br> For this study, you will be presented with content from an online social network. You will be shown different user profiles, the images they have shared on their page, and that user's friends.</p>\
+<p>You will be able to freely click on a user's friends to go to that person's profile. If you like any images, you can click on the image to indicate that you like it. Images you've liked will turn green (see example below).</p>\
 <p><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;'><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid green;border-radius: 8px;opacity: 0.75;'></p>\
-	 <p>TASK: Your goal is to get a sense of the social groups in the network by visiting profiles and clicking on images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress and activate when you have visited the required number of profiles.</p>\
-	 <p>SURVEY: After you explore the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed (previews of their profiles will be provided).</p>\
+	 <p><b><i>TASK</i></b>: Your goal is to click around to different profiles. Try to get a sense of the social groups in the network by visiting profiles and clicking on any images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress. When you've visited enough profiles, the button will turn green and you will be able to go on to the survey. </p>\
+	 <p><b><i>SURVEY</i></b>: After you are done exploring the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed. You are not required to memorize any content, and you will be provided with the necessary information to answer questions.</p>\
 	 <p><i>Press the button below to start the study.</i></p></div>",
 	 choices: ['Begin!'],
 	 post_trial_gap: 250
@@ -159,7 +159,8 @@
 	 <p>You will also be provided open boxes to describe your thoughts that don't fit into the survey framework. Lastly, you'll be asked for some basic demographic information, and about your experiences with this study.</p>\
 	 <p><i>Press the button below to continue.</i></p></div>",
 	 choices: ["Let's go!"],
-	 post_trial_gap: 250
+	 post_trial_gap: 250,
+	 on_load: queueVisited
      }
      
      var summary_page = {
@@ -173,7 +174,7 @@
      
      var conclusion = {
 	 type: "html-keyboard-response",
-	 stimulus: "<div class='w3-animate-opacity'><p><h1> Thank you for participating!</h1></p></div>"
+	 stimulus: "<div class='w3-animate-opacity'><p><br><br><br><br><h1> Thank you for participating!</h1></p></div>"
      };
 
      /*---------------------------------
@@ -182,38 +183,62 @@
      //BREAK POINTS HANDLE ALL resumeExperiments!!
      //break_point_1 is implicitly embedded in the scosn interface
 
-     //Transition from survey instructions to close knit questions
+     //Breakpoint 00 is used for testing purposes only
      var break_point_00 = {
          type: 'html-keyboard-response',
 	 stimulus: "END",
      }
-     
+
+     //Transition from interface to INDIV-INDIV survey questions
      var break_point_2 = {
 	 type: 'html-keyboard-response',
-	 stimulus: "",
+	 stimulus: "BREAK POINT 2 (INDIV-INDIV SURVEY STUFF NEXT)",
 	 choices: jsPsych.NO_KEYS,
 	 trial_duration: 350,
 	 on_finish: function(){
-	     jsPsych.addNodeToEndOfTimeline(survey_instructions,function(){});
-	     jsPsych.addNodeToEndOfTimeline(request_closeknit_animals_visited,jsPsych.resumeExperiment); 
+	     jsPsych.addNodeToEndOfTimeline(survey_instructions,jsPsych.resumeExperiment);
 	 }
      };
 
-     //Transition from close knit questions to diversity questions
+     //Transition from INDIV-INDIV survey questions to asking about groups
      var break_point_3 = {
 	 type: 'html-keyboard-response',
-	 stimulus: "BREAK POINT 3 (DIVERSITY STUFF NEXT)",
+	 stimulus: "BREAK POINT 3 (GROUP SELECTION STUFF NEXT)",
 	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 1000,
-	 on_finish: function(){queueDiverseCommQuestions(5);}
+	 trial_duration: 350,
+	 on_finish: function(){
+	     jsPsych.addNodeToEndOfTimeline(group_selection, jsPsych.resumeExperiment);
+	 }
+     };
+
+     var break_point_35 = {
+	 type: 'html-keyboard-response',
+	 stimulus: "BREAK POINT 3.5 (GROUP SELECTION CONTINUATION NEXT)",
+	 choices: jsPsych.NO_KEYS,
+	 trial_duration: 350,
+	 on_finish: function(){
+	     queueOneToAll();
+	     jsPsych.resumeExperiment();
+	 }
      };
 
      var break_point_4 = {
 	 type: 'html-keyboard-response',
-	 stimulus: "BREAK POINT 4",
+	 stimulus: "BREAK POINT 4 (GROUP-GROUP SURVEY STUFF NEXT)",
+	 choices: jsPsych.NO_KEYS,
+	 trial_duration: 350,
+	 on_finish: function(){
+	     queueAllToAll();
+	     jsPsych.resumeExperiment();
+	 }
+     };
+
+     var break_point_5 = {
+	 type: 'html-keyboard-response',
+	 stimulus: "BREAK POINT 5 (STATIC CONCLUSION NEXT)",
 	 choices: jsPsych.NO_KEYS,
 	 trial_duration: 1000,
-	 //on_finish: static_conclusion_appender
+	 on_finish: static_conclusion_appender
      };
      
      /*---------------------------------
@@ -233,7 +258,8 @@
 		 }]
 	     }, jsPsych.resumeExperiment);
 	 } else {
-	     jsPsych.addNodeToEndOfTimeline(break_point_00, jsPsych.data.displayData());
+	     jsPsych.addNodeToEndOfTimeline(break_point_2, jsPsych.resumeExperiment);
+	     //jsPsych.data.displayData()); <-- Use thise if you want to cut out the survey and just display data
 	 }
      }
 
@@ -252,85 +278,64 @@
 	--------------------------------*/
 
      var likert_agreement_7 = ["Strongly Disagree", "Disagree", "Somewhat Disagree", "Neutral", "Somewhat Agree", "Agree", "Strongly Agree"];
-     var likert_closeness_7 = ["Very Distant", "Distant", "Somewhat Distant", "Neutral", "Somewhat Close", "Close", "Very Close"];
-     var likert_exlusive_7 = ["Very Exclusive", "Exclusive", "Somewhat Exlusive", "Neutral", "Somewhat Inclusive", "Inclusive", "Very Inclusive"];
+     //VERY BAD, NEEDS EDITING, MAYBE JUST USE AGREEMENT SCALE
+     var likert_similarity_7 = ["Not similar at all", "Not very similar", "Neutral", "Somewhat similar", "Similar", "Very similar"]; 
+
+     function manualRecenterJS(divname){
+	 var jsc = document.getElementById(divname);
+	 jsc.style.position = 'absolute';
+	 jsc.style.left = '50%';
+	 jsc.style.top = '60%';
+	 jsc.style.transform = 'translate(-50%,0%)';
+     }
      
-     function getVisitedIcons(){
-	 //Get the images that the user visited and show them
-	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
-	 let iconset = new Set();
-	 for (i=0;i<usernames.length;i++){
-	     iconset.add( usernames[i].substring( usernames[i].match(/_/).index+1, usernames[i].length ).toLowerCase() );
+     function shuffleArray(array) {
+	 for (let i = array.length - 1; i > 0; i--) {
+             const j = Math.floor(Math.random() * (i + 1));
+             [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
 	 }
-	 let iconsetarr = Array.from(iconset);
-	 var icons_html = "<div class='w3-animate-opacity'>";
-	 icons_html += "<p>";// class='w3-animate-opacity' style='width:45%;display:inline-block;'><p>";
-	 for (i=0;i<iconsetarr.length;i++){
-	     icons_html += "<img src='animal-collection/png/"+iconsetarr[i]+".png' id='"+iconsetarr[i]+"' name='animalIcons' style='width:auto;height:100px;'>";
-	 }
-	 icons_html += "</p>";
-	 icons_html += "<p>Please select the icons above that you found to be part of close-knit communities.</p>";
-	 icons_html += "</div>";
-	 document.getElementById('ismasirblabla').innerHTML = icons_html;
-
-	 let selected_images = new Set();
-	 
-	 //Give the images the ability to be clicked
-	 var images = document.getElementsByName("animalIcons");
-	 for (i=0;i<images.length;i++){
-	     images[i].addEventListener("click", function() {
-		 if (this.style.opacity==""){
-		     this.style.opacity = '0.5';
-		     selected_images.add(this.id);
-		     jsPsych.data.addProperties({"selectedAnimals":Array.from(selected_images)});
-		 } else if (this.style.opacity=='0.5'){
-		     this.style.opacity = "";
-		     selected_images.delete(this.id);
-		     jsPsych.data.addProperties({"selectedAnimals":Array.from(selected_images)});
-		 }
-	     }, false);
-	 }
+	 return array;
      }
 
-     function getVisitedButtons(display_values,display_text){
-	 var buttons_html = "<div class='w3-animate-opacity'>";
-	 buttons_html += "<p>";
-	 for (i=0;i<display_values.length;i++){
-	     buttons_html += "<button type='button' name='selectButtons' style='border:none;color:black;padding:15px 32px;test-align:center;margin:4px 2px;cursor:pointer;'>"+display_values[i]+"</button>";
-	 }
-	 buttons_html += "</p>";
-	 buttons_html += "<p>"+display_text+"</p>";
-	 buttons_html += "</div>";
+     function singlePageGenerator(animal, animal_fullname){
+	 var new_html = "<div class='w3-animate-opacity' id='indiv_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
-	 document.getElementById("ismasirblabla").innerHTML = buttons_html;
+	 //Add in left animal
+	 new_html += "<div id='animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 94%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
+<p style='font-size:140%;float: center;'>\
+<img src='animal-collection/png/"+"blank"+".png' id='"+animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+	 new_html += animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
+	 var folder = "data/"+network_choice+"/"+animal_fullname+"/img/";
+	 $.ajax({
+	     url : folder,
+	     success: function (data) {
+		 $(data).find("a").attr("href", function (i, val) {
+		     if( val.match(/\.(jpe?g|png|gif)$/) ) {
+			 new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+		     } 
+		 });
+	     },
+	     async: false
+	 });
+	 new_html += "</div>";
 	 
-	 let selected_values = new Set();
-
-	 //Let the buttons insert data
-	 var buttons = document.getElementsByName("selectButtons");
-	 for (i=0;i<buttons.length;i++){
-	     buttons[i].addEventListener("click", function(){
-		 if (!selected_values.has(this.textContent)){
-		     selected_values.add(this.textContent);
-		     this.style.backgroundColor = 'green';
-		 } else if (selected_values.has(this.textContent)){
-		     this.style.backgroundColor = '';
-		     selected_values.delete(this.textContent);
-		 }
-	     }, false);
-	 }
+	 //Push the survey down
+	 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+	 new_html += "</div>";
+	 return new_html;	 
      }
-
+     
      function comparisonPageGenerator(left_animal, left_animal_icon, right_animal, right_animal_icon){
+	 //THIS FUNCTION OUTPUTS A STRING OF HTML FOR DISPLAYING TWO USERS SIDE BY SIDE
 	 //Generating display
 	 var new_html = "<div class='w3-animate-opacity' id='comparison_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
 	 //Add in left animal
 	 new_html += "<div id='left_animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 47%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
 <p style='font-size:140%;float: center;'>\
-<img src='animal-collection/png/"+left_animal_icon+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+<img src='animal-collection/png/"+"blank"+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 	 new_html += left_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
-	 var folder = "data/"+network_choice+"/"+left_animal+"/img/";
+	 var folder = "data/"+network_choice+"/"+left_animal_icon+"/img/";
 	 $.ajax({
 	     url : folder,
 	     success: function (data) {
@@ -350,9 +355,9 @@
 	 //Add in right animal
 	 new_html += "<div id='right_animal_div' style='float: right;overflow-y: scroll;height:55%; width: 47%; position: absolute; left: 50%; top: 5%;border: 3px solid grey;'>\
 <p style='font-size:140%;float: center;'>\
-<img src='animal-collection/png/"+right_animal_icon+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+<img src='animal-collection/png/"+"blank"+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 	 new_html += right_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
-	 var folder = "data/"+network_choice+"/"+right_animal+"/img/";
+	 var folder = "data/"+network_choice+"/"+right_animal_icon+"/img/";
 	 $.ajax({
 	     url : folder,
 	     success: function (data) {
@@ -372,116 +377,146 @@
 	 return new_html;
      }
 
-     function queueCloseKnitCommQuestions(){
-	 var data = jsPsych.data.get().values(); //all data value objects
-	 var selected_animals = data[data.length - 1].selectedAnimals; //just list of close-knit animals selected by user
-	 var new_html;
-	 if (selected_animals != undefined && selected_animals.length > 0){
-	     for (i=0;i<selected_animals.length;i++){
-		 //Choosing two random animals (doesn't have to be previously visited)
-		 animal_capitalized = selected_animals[i].charAt(0).toUpperCase() + selected_animals[i].slice(1);
-		 animals_fullnames = Object.keys(friendlist).filter(a=>a.includes(animal_capitalized));
-		 left_animal_fullname = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
-		 left_animal = left_animal_fullname.substring( 0, left_animal_fullname.match(/_/).index );
-		 animals_fullnames.splice(animals_fullnames.indexOf(left_animal_fullname));
-		 right_animal = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
-		 right_animal = right_animal.substring( 0, right_animal.match(/_/).index );
+     function queueVisited(){
+	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
+	 usernames = Array.from(new Set(usernames));
+	 //Here you can put a function that determines how the users will be selected
+	 //For now, I'm just going to choose pairs randomly
+	 if (usernames.length % 2 == 1){
+	     usernames.pop(); 
+	 }
+	 var pairs = shuffleArray(usernames).reduce(function(result, value, index, array) {
+	     if (index % 2 === 0)
+		 result.push(array.slice(index, index + 2));
+	     return result;
+	 }, []);
+	 var number_of_pages = 2;
+	 pairs = pairs.slice(0,number_of_pages);
 
-		 new_html = comparisonPageGenerator(left_animal,selected_animals[i],right_animal,selected_animals[i]);
+	 if (pairs.length > 0){
+	     for (i=0;i<pairs.length;i++){
+		 left_animal = pairs[i][0].substring( 0, pairs[i][0].match(/_/).index );
+		 right_animal = pairs[i][1].substring( 0, pairs[i][1].match(/_/).index );
+		 /* animal_capitalized = selected_animals[i].charAt(0).toUpperCase() + selected_animals[i].slice(1);
+		    animals_fullnames = Object.keys(friendlist).filter(a=>a.includes(animal_capitalized));
+		    left_animal_fullname = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
+		    left_animal = left_animal_fullname.substring( 0, left_animal_fullname.match(/_/).index );
+		    animals_fullnames.splice(animals_fullnames.indexOf(left_animal_fullname));
+		    right_animal = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
+		    right_animal = right_animal.substring( 0, right_animal.match(/_/).index ); */
+
+		 new_html = comparisonPageGenerator(left_animal,pairs[i][0],right_animal,pairs[i][1]);
 		 jsPsych.addNodeToEndOfTimeline({
 		     type: 'survey-likert',
 		     preamble: new_html,
+		     randomize_question_order: true, 
 		     on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
-		     questions: [{prompt: 'These two users are very similar.', labels: likert_agreement_7, required: true}]
+		     questions: [{prompt: 'These two users are similar.', labels: likert_agreement_7, required: true},
+				 {prompt: 'These two users have interests in common outside of their profiles.', labels: likert_agreement_7, required: true}]
 		 },function(){});
 	     }
+	     jsPsych.addNodeToEndOfTimeline(break_point_3,function(){});
 	 }
-	 jsPsych.addNodeToEndOfTimeline(break_point_3,jsPsych.resumeExperiment); 
      }
 
-     function manualRecenterJS(divname){
-	 var jsc = document.getElementById(divname);
-	 jsc.style.position = 'absolute';
-	 jsc.style.left = '50%';
-	 jsc.style.top = '60%';
-	 jsc.style.transform = 'translate(-50%,0%)';
-     }
-     
-     function shuffleArray(array) {
-	 for (let i = array.length - 1; i > 0; i--) {
-             const j = Math.floor(Math.random() * (i + 1));
-             [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
-	 }
-	 return array;
-     }
-     
-     function queueDiverseCommQuestions(number_of_trials){
+     function queueOneToAll(){
+	 //This function appends survey questions about comparing an individual to a group
+	 //Generate list of pages
+	 //The following function can be anything
 	 var data = jsPsych.data.get().values();
-	 var visited_animals = data.filter(a=>a.trial_type=='scosn-interface').map(a=>a.user);
-	 //Randomly create unique pairs
-	 visited_animals = shuffleArray(visited_animals);
-	 var animal_pairs = [];
-	 while (visited_animals.length >= 2){
-	     animal_pairs.push([visited_animals.pop(),visited_animals.pop()]);
+	 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
+	 var pages = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
+	 var new_html = "";
+	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
+	 usernames = shuffleArray(usernames);
+	 var number_of_pages = 2; //This should be okay as long as the user is forced to visit >X profiles
+	 
+	 for (i=0;i<number_of_pages;i++){
+	     animal = usernames[i].substring( 0, usernames[i].match(/_/).index );
+	     new_html = singlePageGenerator(animal,usernames[i]);
+	     jsPsych.addNodeToEndOfTimeline({
+		 type: 'survey-likert',
+		 preamble: new_html,
+		 randomize_question_order: true,
+		 on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
+		 questions: [{prompt: 'This person belongs in a group about '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true},
+			     {prompt: 'This person has many friends in common with people who like '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true},
+			     {prompt: 'People who post photos about '+pages[i].toLowerCase()+' are aware of this person.', labels: likert_agreement_7, required: true}]
+	     },function(){});
 	 }
-	 var animal1;
-	 var animal2;
-	 var animal1_icon;
-	 var animal2_icon;
-	 if (animal_pairs.length > 0){
-	     for (i=0;i<Math.min(number_of_trials,animal_pairs.length);i++){
-		 animal1 = animal_pairs[i][0];
-		 animal2 = animal_pairs[i][1];
-		 //Get the animal's icons
-		 animal1_icon = animal1.substring(animal1.match(/_/).index+1, animal1.length ).toLowerCase();
-		 animal2_icon = animal2.substring(animal2.match(/_/).index+1, animal2.length ).toLowerCase();
-		 animal1 = animal1.substring( 0, animal1.match(/_/).index );
-		 animal2 = animal2.substring( 0, animal2.match(/_/).index );
-		 
-		 new_html = comparisonPageGenerator(animal1,animal1_icon,animal2,animal2_icon);
-		 jsPsych.addNodeToEndOfTimeline({
-		     type: 'survey-likert',
-		     preamble: new_html,
-		     on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
-		     questions: [{prompt: "How similar are the images in these user profiles?", labels: likert_closeness_7,required: true}, 
-      				 {prompt: "How similar are these two users?", labels: likert_exlusive_7,required: true}]
-		 },function(){});
+	 jsPsych.addNodeToEndOfTimeline(break_point_4,function(){});
+     }
+
+     function queueAllToAll(){
+	 //This function appends survey questions about comparing groups to each other
+	 //Generate list of pages
+	 var data = jsPsych.data.get().values();
+	 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
+	 //This function can be anything
+	 var responses = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
+	 if (responses.length % 2 == 1){
+	     responses.pop(); 
+	 }
+	 var pairs = responses.reduce(function(result, value, index, array) {
+	     if (index % 2 === 0)
+		 result.push(array.slice(index, index + 2));
+	     return result;
+	 }, []);
+	 var number_of_pages = 2;
+	 if (pairs.length<2){
+	     number_of_pages = pairs.length;
+	 }
+	 var new_html = "";
+
+	 for (i=0;i<number_of_pages;i++){
+	     group_0 = pairs[i][0];
+	     group_1 = pairs[i][1];
+	     new_html = "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
+	 <p>Consider the following two types of content and the people who had this content on their profiles:</p>\
+<p><b>"+group_0+"</b> and <b>"+group_1+"</b></p></div>";
+	     jsPsych.addNodeToEndOfTimeline({
+		 type: 'survey-likert',
+		 preamble: new_html,
+		 randomize_question_order: true,
+		 questions: [{prompt: 'These groups are similar, based on their friendships.', labels: likert_agreement_7, required: true},
+			     {prompt: 'Based on their mutual connections, these groups would get along.', labels: likert_agreement_7, required: true}]
+	     },function(){});
+	 }
+	 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
+     }
+
+     var group_selection = {
+	 type: 'survey-multi-select',
+	 preamble: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
+	 <p>For the next part of the survey, we need to know what kinds of content you saw people share while you were browsing people's profiles. </p>",
+	 questions: [
+	     {
+		 prompt: "What sort of content did you see represented in the social network?", 
+		 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Nature", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Water"],
+		 horizontal: true,
+		 required: true,
+		 name: 'Represented Content Tags',
+	     }, 
+	     {
+		 prompt: "Which of the following kinds of content were missing from the social network?", 
+		 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Nature", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Water"],
+		 horizontal: true,
+		 required: true,
+		 name: 'Missing Content Tags',
 	     }
+	 ],
+	 on_finish: function(){
+	     jsPsych.addNodeToEndOfTimeline(break_point_35, jsPsych.resumeExperiment);
 	 }
-	 jsPsych.addNodeToEndOfTimeline(break_point_4,jsPsych.resumeExperiment);
-     }
-
-     var request_closeknit_animals_visited = {
-	 type: 'html-button-response',
-	 stimulus: "<div id='ismasirblabla'> CLOSE KNIT ICONS THING </div>",
-	 choices: ['Continue'],
-	 on_load: getVisitedIcons,
-	 on_finish: queueCloseKnitCommQuestions
      };
-
-     var request_diverse_animals_visited = {
-	 type: 'html-button-response',
-	 stimulus: "<div id='ismasirblabla'> DIVERSE ICONS THING </div>",
-	 choices: ['Continue'],
-	 on_load: getVisitedIcons
-     };
-
-     var group_recognition = {
-	 type: 'html-button-response',
-	 stimulus: "<div id='ismasirblabla'> TEST BUTTONS THING </div>",
-	 choices: ['Continue'],
-	 on_load: function(){
-	     getVisitedButtons(image_tags,"Try to recall the content that you saw in the social network. Select the tags above that you associate with groups you saw in the social network.");
-	 }
-     }
+     
+     //FINALIZER QUESTIONS
      
      var difficulty_likert_page = {
 	 type: 'survey-likert',
 	 questions: [{prompt: "I understood what this experiment was asking of me.", labels: likert_agreement_7, required: true},
 		     {prompt: "I was able to do this task easily.", labels: likert_agreement_7, required: true}]
      };
-
-     //Content liking survey questions
 
      var age_ranges = ["18-21","22-25","26-30","31-35","36-40","40-50","50-60","60-70","70-80"];
      var ethnicity = ["Black or African American", "East Asian", "Hispanic or Latino", "Native American or American Indian", "Pacific Islander", "South Asian", "White", "Other"];
