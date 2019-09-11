@@ -306,17 +306,24 @@
 <img src='animal-collection/png/"+"blank"+".png' id='"+animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 	 new_html += animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 	 var folder = "data/"+network_choice+"/"+animal_fullname+"/img/";
-	 $.ajax({
-	     url : folder,
-	     success: function (data) {
-		 $(data).find("a").attr("href", function (i, val) {
-		     if( val.match(/\.(jpe?g|png|gif)$/) ) {
-			 new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-		     } 
-		 });
-	     },
-	     async: false
-	 });
+	 var imp = imagemap[animal_fullname];
+
+	 for (i=0; i<imp.length; i++){
+	     val = imp[i];
+	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	 }
+	 
+	 /* $.ajax({
+	    url : folder,
+	    success: function (data) {
+	    $(data).find("a").attr("href", function (i, val) {
+	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
+	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	    } 
+	    });
+	    },
+	    async: false
+	    }); */
 	 new_html += "</div>";
 	 
 	 //Push the survey down
@@ -336,17 +343,23 @@
 <img src='animal-collection/png/"+"blank"+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 	 new_html += left_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 	 var folder = "data/"+network_choice+"/"+left_animal_icon+"/img/";
-	 $.ajax({
-	     url : folder,
-	     success: function (data) {
-		 $(data).find("a").attr("href", function (i, val) {
-		     if( val.match(/\.(jpe?g|png|gif)$/) ) {
-			 new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-		     } 
-		 });
-	     },
-	     async: false
-	 });
+	 var imp = imagemap[left_animal_icon];
+
+	 for (i=0; i<imp.length; i++){
+	     val = imp[i];
+	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	 }
+	 /* $.ajax({
+	    url : folder,
+	    success: function (data) {
+	    $(data).find("a").attr("href", function (i, val) {
+	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
+	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	    } 
+	    });
+	    },
+	    async: false
+	    }); */
 	 new_html += "</div>";
 	 
 	 //Add vertical line
@@ -358,17 +371,23 @@
 <img src='animal-collection/png/"+"blank"+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 	 new_html += right_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 	 var folder = "data/"+network_choice+"/"+right_animal_icon+"/img/";
-	 $.ajax({
-	     url : folder,
-	     success: function (data) {
-		 $(data).find("a").attr("href", function (i, val) {
-		     if( val.match(/\.(jpe?g|png|gif)$/) ) {
-			 new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-		     } 
-		 });
-	     },
-	     async: false
-	 });
+	 var imp = imagemap[right_animal_icon];
+
+	 for (i=0; i<imp.length; i++){
+	     val = imp[i];
+	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	 }
+	 /* $.ajax({
+	    url : folder,
+	    success: function (data) {
+	    $(data).find("a").attr("href", function (i, val) {
+	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
+	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+	    } 
+	    });
+	    },
+	    async: false
+	    }); */
 	 new_html += "</div>";
 
 	 //Push the survey down
