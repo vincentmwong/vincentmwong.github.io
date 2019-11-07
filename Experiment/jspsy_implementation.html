@@ -24,6 +24,7 @@
 	<script src="jspsych-6.0.4/plugins/jspsych-scosn-interface.js"></script>
 	<script src="networks/friendslist.js"></script>
 	<script src="networks/imagemap.js"></script>
+	<script src="networks/comppagelist.js"></script>
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
@@ -110,433 +111,445 @@
 	 ############################################-->
     <script>
      $("#jspsych-target").hide();
-
+	 //The following disables the use of backspace as a back button
+	 $(document).on("keydown", function (e) {
+		 if (e.which === 8 && !$(e.target).is("input:not([readonly]):not([type=radio]):not([type=checkbox]), textarea, [contentEditable], [contentEditable=true]")) {
+			 e.preventDefault();
+		 }
+	 });
+	 
      /*---------------------------------
-	INTRO AND EXIT
-	--------------------------------*/
+		INTRO AND EXIT
+		--------------------------------*/
      function check_consent(){
-  	 return document.getElementById('consent_checkbox').checked;
+  		 return document.getElementById('consent_checkbox').checked;
      }
      
      function start_experiment(){
-	 if(check_consent()){
-  	     $('#consent').hide();
-	     $("#jspsych-target").show();
-	 } else {
-  	     alert("You must consent to participate in the study by checking the box next to the statement 'I agree to participate in this study.'");
-  	 }
+		 if(check_consent()){
+  			 $('#consent').hide();
+			 $("#jspsych-target").show();
+		 } else {
+  			 alert("You must consent to participate in the study by checking the box next to the statement 'I agree to participate in this study.'");
+  		 }
      }
      
      var timeline = [];
      var possible_networks = ['network_0','network_1','network_2'];
-     var network_choice = 'network_4'; //possible_networks[Math.floor(Math.random()*possible_networks.length)];
+     var network_choice = 'network_2'; //possible_networks[Math.floor(Math.random()*possible_networks.length)];
      
      var welcome = {
-	 type: 'html-keyboard-response',
-	 stimulus: "<div class='w3-animate-opacity'><h1>Welcome</h1></div>",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 2000,
-	 post_trial_gap: 100
+		 type: 'html-keyboard-response',
+		 stimulus: "<div class='w3-animate-opacity'><h1>Welcome</h1></div>",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 2000,
+		 post_trial_gap: 100
      };
 
      var instructions = {
-	 type: 'html-button-response',
-	 stimulus: "<div class='w3-animate-opacity' style='width:65%;display:inline-block;'>\
+		 type: 'html-button-response',
+		 stimulus: "<div class='w3-animate-opacity' style='width:65%;display:inline-block;'>\
 	 <p><b>INTRODUCTION</b>: <br> For this study, you will be presented with content from an online social network. You will be shown different user profiles, the images they have shared on their page, and that user's friends.</p>\
 <p>You will be able to freely click on a user's friends to go to that person's profile. If you like any images, you can click on the image to indicate that you like it. Images you've liked will turn green (see example below).</p>\
 <p><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;'><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid green;border-radius: 8px;opacity: 0.75;'></p>\
 	 <p><b><i>TASK</i></b>: Your goal is to click around to different profiles. Try to get a sense of the social groups in the network by visiting profiles and clicking on any images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress. When you've visited enough profiles, the button will turn green and you will be able to go on to the survey. </p>\
 	 <p><b><i>SURVEY</i></b>: After you are done exploring the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed. You are not required to memorize any content, and you will be provided with the necessary information to answer questions.</p>\
 	 <p><i>Press the button below to start the study.</i></p></div>",
-	 choices: ['Begin!'],
-	 post_trial_gap: 250
+		 choices: ['Begin!'],
+		 post_trial_gap: 250
      };
 
      var survey_instructions = {
-	 type: 'html-button-response',
-	 stimulus: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
+		 type: 'html-button-response',
+		 stimulus: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
 	 <p>You've done the first part! In this next part, you will take a survey about what you saw in the social network. You will be asked about your sense of communities in terms of characteristics like closeness, diversity, exclusivity, etc.</p>\
 	 <p>You will also be provided open boxes to describe your thoughts that don't fit into the survey framework. Lastly, you'll be asked for some basic demographic information, and about your experiences with this study.</p>\
 	 <p><i>Press the button below to continue.</i></p></div>",
-	 choices: ["Let's go!"],
-	 post_trial_gap: 250,
-	 on_load: queueVisited
+		 choices: ["Let's go!"],
+		 post_trial_gap: 250,
+		 on_load: queueVisited
      }
      
      var summary_page = {
-	 type: 'html-button-response',
-	 stimulus: "<div class='w3-animate-opacity'><p><h3>You have completed the experiment.</h3><br>\
+		 type: 'html-button-response',
+		 stimulus: "<div class='w3-animate-opacity'><p><h3>You have completed the experiment.</h3><br>\
 	 Please press the button below to submit your response.</p></div",
-	 choices: ['Submit'],
-	 //prompt: "<div class='w3-animate-opacity'><p>Please press the button below to submit your response.</p></div"
-	 post_trial_gap: 250
+		 choices: ['Submit'],
+		 //prompt: "<div class='w3-animate-opacity'><p>Please press the button below to submit your response.</p></div"
+		 post_trial_gap: 250
      }
      
      var conclusion = {
-	 type: "html-keyboard-response",
-	 stimulus: "<div class='w3-animate-opacity'><p><br><br><br><br><h1> Thank you for participating!</h1></p></div>"
+		 type: "html-keyboard-response",
+		 stimulus: "<div class='w3-animate-opacity'><p><br><br><br><br><h1> Thank you for participating!</h1></p></div>"
      };
 
      /*---------------------------------
-	BREAK POINT INFRASTRUCTURE
-	--------------------------------*/
+		BREAK POINT INFRASTRUCTURE
+		--------------------------------*/
      //BREAK POINTS HANDLE ALL resumeExperiments!!
      //break_point_1 is implicitly embedded in the scosn interface
 
      //Breakpoint 00 is used for testing purposes only
      var break_point_00 = {
          type: 'html-keyboard-response',
-	 stimulus: "END",
+		 stimulus: "END",
      }
 
      //Transition from interface to INDIV-INDIV survey questions
      var break_point_2 = {
-	 type: 'html-keyboard-response',
-	 stimulus: "",//"BREAK POINT 2 (INDIV-INDIV SURVEY STUFF NEXT)",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 350,
-	 on_finish: function(){
-	     jsPsych.addNodeToEndOfTimeline(survey_instructions,jsPsych.resumeExperiment);
-	 }
+		 type: 'html-keyboard-response',
+		 stimulus: "",//"BREAK POINT 2 (INDIV-INDIV SURVEY STUFF NEXT)",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 350,
+		 on_finish: function(){
+			 jsPsych.addNodeToEndOfTimeline(survey_instructions,jsPsych.resumeExperiment);
+		 }
      };
 
      //Transition from INDIV-INDIV survey questions to asking about groups
      var break_point_3 = {
-	 type: 'html-keyboard-response',
-	 stimulus: "",//"BREAK POINT 3 (GROUP SELECTION STUFF NEXT)",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 350,
-	 on_finish: function(){
-	     jsPsych.addNodeToEndOfTimeline(group_selection, jsPsych.resumeExperiment);
-	 }
+		 type: 'html-keyboard-response',
+		 stimulus: "",//"BREAK POINT 3 (GROUP SELECTION STUFF NEXT)",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 350,
+		 on_finish: function(){
+			 jsPsych.addNodeToEndOfTimeline(group_selection, jsPsych.resumeExperiment);
+		 }
      };
 
      var break_point_35 = {
-	 type: 'html-keyboard-response',
-	 stimulus: "",//"BREAK POINT 3.5 (GROUP SELECTION CONTINUATION NEXT)",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 350,
-	 on_finish: function(){
-	     queueOneToAll();
-	     jsPsych.resumeExperiment();
-	 }
+		 type: 'html-keyboard-response',
+		 stimulus: "",//"BREAK POINT 3.5 (GROUP SELECTION CONTINUATION NEXT)",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 350,
+		 on_finish: function(){
+			 queueOneToAll();
+			 jsPsych.resumeExperiment();
+		 }
      };
 
      var break_point_4 = {
-	 type: 'html-keyboard-response',
-	 stimulus: "",//"BREAK POINT 4 (GROUP-GROUP SURVEY STUFF NEXT)",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 350,
-	 on_finish: function(){
-	     queueAllToAll();
-	     jsPsych.resumeExperiment();
-	 }
+		 type: 'html-keyboard-response',
+		 stimulus: "",//"BREAK POINT 4 (GROUP-GROUP SURVEY STUFF NEXT)",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 350,
+		 on_finish: function(){
+			 queueAllToAll();
+			 jsPsych.resumeExperiment();
+		 }
      };
 
      var break_point_5 = {
-	 type: 'html-keyboard-response',
-	 stimulus: "",//"BREAK POINT 5 (STATIC CONCLUSION NEXT)",
-	 choices: jsPsych.NO_KEYS,
-	 trial_duration: 1000,
-	 on_finish: static_conclusion_appender
+		 type: 'html-keyboard-response',
+		 stimulus: "",//"BREAK POINT 5 (STATIC CONCLUSION NEXT)",
+		 choices: jsPsych.NO_KEYS,
+		 trial_duration: 1000,
+		 on_finish: static_conclusion_appender
      };
      
      /*---------------------------------
-	SCOSN INTERFACE
-	--------------------------------*/
+		SCOSN INTERFACE
+		--------------------------------*/
 
      function people_appender(){
-	 jsPsych.pauseExperiment();
-	 next_person = jsPsych.data.get().last(1).values()[0].next_person;
-	 if (next_person!=null){
-	     jsPsych.addNodeToEndOfTimeline({
-		 timeline: [{
-		     type: 'scosn-interface',
-		     user: next_person,
-		     network: network_choice,
-		     on_finish: people_appender
-		 }]
-	     }, jsPsych.resumeExperiment);
-	 } else {
-	     jsPsych.addNodeToEndOfTimeline(break_point_2, jsPsych.resumeExperiment);
-	     //jsPsych.data.displayData()); <-- Use thise if you want to cut out the survey and just display data
-	 }
+		 jsPsych.pauseExperiment();
+		 next_person = jsPsych.data.get().last(1).values()[0].next_person;
+		 if (next_person!=null){
+			 jsPsych.addNodeToEndOfTimeline({
+				 timeline: [{
+					 type: 'scosn-interface',
+					 user: next_person,
+					 network: network_choice,
+					 on_finish: people_appender
+				 }]
+			 }, jsPsych.resumeExperiment);
+		 } else {
+			 jsPsych.addNodeToEndOfTimeline(break_point_2, jsPsych.resumeExperiment);
+			 //jsPsych.data.displayData()); <-- Use thise if you want to cut out the survey and just display data
+		 }
      }
 
      var userlist = Object.keys(friendlist);
      var choice_user = userlist[Math.floor(Math.random()*userlist.length)];
      
      var SCoSN_interface = {
-	 type: "scosn-interface",
-	 user: choice_user,
-	 network: network_choice,
-	 on_finish: people_appender                                                                         //BREAK PT1
+		 type: "scosn-interface",
+		 user: choice_user,
+		 network: network_choice,
+		 on_finish: people_appender                                                                         //BREAK PT1
      };
 
      /*---------------------------------
-	SURVEY
-	--------------------------------*/
+		SURVEY
+		--------------------------------*/
 
      var likert_agreement_7 = ["Strongly Disagree", "Disagree", "Somewhat Disagree", "Neutral", "Somewhat Agree", "Agree", "Strongly Agree"];
      //VERY BAD, NEEDS EDITING, MAYBE JUST USE AGREEMENT SCALE
      var likert_similarity_7 = ["Not similar at all", "Not very similar", "Neutral", "Somewhat similar", "Similar", "Very similar"]; 
 
      function manualRecenterJS(divname){
-	 var jsc = document.getElementById(divname);
-	 jsc.style.position = 'absolute';
-	 jsc.style.left = '50%';
-	 jsc.style.top = '60%';
-	 jsc.style.transform = 'translate(-50%,0%)';
+		 var jsc = document.getElementById(divname);
+		 jsc.style.position = 'absolute';
+		 jsc.style.left = '50%';
+		 jsc.style.top = '60%';
+		 jsc.style.transform = 'translate(-50%,0%)';
      }
      
      function shuffleArray(array) {
-	 for (let i = array.length - 1; i > 0; i--) {
+		 for (let i = array.length - 1; i > 0; i--) {
              const j = Math.floor(Math.random() * (i + 1));
              [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
-	 }
-	 return array;
+		 }
+		 return array;
      }
 
      function singlePageGenerator(animal, animal_fullname){
-	 var new_html = "<div class='w3-animate-opacity' id='indiv_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
+		 var new_html = "<div class='w3-animate-opacity' id='indiv_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
-	 //Add in left animal
-	 new_html += "<div id='animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 94%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
+		 //Add in left animal
+		 new_html += "<div id='animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 94%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
 <p style='font-size:140%;float: center;'>\
 <img src='animal-collection/png/"+"blank"+".png' id='"+animal+"' name='animalIcons' style='width:auto;height:100px;'>";
-	 new_html += animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
-	 var folder = "data/"+network_choice+"/"+animal_fullname+"/img/";
-	 var imp = imagemap[animal_fullname];
+		 new_html += animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
+		 var folder = "data/"+network_choice+"/"+animal_fullname+"/img/";
+		 var imp = imagemap[animal_fullname];
 
-	 for (var i=0; i<imp.length; i++){
-	     val = imp[i];
-	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	 }
-	 
-	 /* $.ajax({
-	    url : folder,
-	    success: function (data) {
-	    $(data).find("a").attr("href", function (i, val) {
-	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
-	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	    } 
-	    });
-	    },
-	    async: false
-	    }); */
-	 new_html += "</div>";
-	 
-	 //Push the survey down
-	 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-	 new_html += "</div>";
-	 return new_html;	 
+		 for (var i=0; i<imp.length; i++){
+			 val = imp[i];
+			 new_html += "<img src='"+ folder + val +"' style='width:20%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+		 }
+		 
+		 /* $.ajax({
+			url : folder,
+			success: function (data) {
+			$(data).find("a").attr("href", function (i, val) {
+			if( val.match(/\.(jpe?g|png|gif)$/) ) {
+			new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+			} 
+			});
+			},
+			async: false
+			}); */
+		 new_html += "</div>";
+		 
+		 //Push the survey down
+		 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+		 new_html += "</div>";
+		 return new_html;	 
      }
      
      function comparisonPageGenerator(left_animal, left_animal_icon, right_animal, right_animal_icon){
-	 //THIS FUNCTION OUTPUTS A STRING OF HTML FOR DISPLAYING TWO USERS SIDE BY SIDE
-	 //Generating display
-	 var new_html = "<div class='w3-animate-opacity' id='comparison_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
+		 //THIS FUNCTION OUTPUTS A STRING OF HTML FOR DISPLAYING TWO USERS SIDE BY SIDE
+		 //Generating display
+		 var new_html = "<div class='w3-animate-opacity' id='comparison_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
-	 //Add in left animal
-	 new_html += "<div id='left_animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 47%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
+		 //Add in left animal
+		 new_html += "<div id='left_animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 47%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
 <p style='font-size:140%;float: center;'>\
 <img src='animal-collection/png/"+"blank"+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
-	 new_html += left_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
-	 var folder = "data/"+network_choice+"/"+left_animal_icon+"/img/";
-	 var imp = imagemap[left_animal_icon];
+		 new_html += left_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
+		 var folder = "data/"+network_choice+"/"+left_animal_icon+"/img/";
+		 var imp = imagemap[left_animal_icon];
 
-	 for (var i=0; i<imp.length; i++){
-	     val = imp[i];
-	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	 }
-	 /* $.ajax({
-	    url : folder,
-	    success: function (data) {
-	    $(data).find("a").attr("href", function (i, val) {
-	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
-	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	    } 
-	    });
-	    },
-	    async: false
-	    }); */
-	 new_html += "</div>";
-	 
-	 //Add vertical line
-	 //new_html += "<div style='border-left: 2px solid #bec1c6; height: 500px; position: absolute; left: 50%; margin-left: -3px; top: 10%;'></div>";
-	 
-	 //Add in right animal
-	 new_html += "<div id='right_animal_div' style='float: right;overflow-y: scroll;height:55%; width: 47%; position: absolute; left: 50%; top: 5%;border: 3px solid grey;'>\
+		 for (var i=0; i<imp.length; i++){
+			 val = imp[i];
+			 new_html += "<img src='"+ folder + val +"' style='width:25%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+		 }
+		 /* $.ajax({
+			url : folder,
+			success: function (data) {
+			$(data).find("a").attr("href", function (i, val) {
+			if( val.match(/\.(jpe?g|png|gif)$/) ) {
+			new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+			} 
+			});
+			},
+			async: false
+			}); */
+		 new_html += "</div>";
+		 
+		 //Add vertical line
+		 //new_html += "<div style='border-left: 2px solid #bec1c6; height: 500px; position: absolute; left: 50%; margin-left: -3px; top: 10%;'></div>";
+		 
+		 //Add in right animal
+		 new_html += "<div id='right_animal_div' style='float: right;overflow-y: scroll;height:55%; width: 47%; position: absolute; left: 50%; top: 5%;border: 3px solid grey;'>\
 <p style='font-size:140%;float: center;'>\
 <img src='animal-collection/png/"+"blank"+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
-	 new_html += right_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
-	 var folder = "data/"+network_choice+"/"+right_animal_icon+"/img/";
-	 var imp = imagemap[right_animal_icon];
+		 new_html += right_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
+		 var folder = "data/"+network_choice+"/"+right_animal_icon+"/img/";
+		 var imp = imagemap[right_animal_icon];
 
-	 for (var i=0; i<imp.length; i++){
-	     val = imp[i];
-	     new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	 }
-	 /* $.ajax({
-	    url : folder,
-	    success: function (data) {
-	    $(data).find("a").attr("href", function (i, val) {
-	    if( val.match(/\.(jpe?g|png|gif)$/) ) {
-	    new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
-	    } 
-	    });
-	    },
-	    async: false
-	    }); */
-	 new_html += "</div>";
+		 for (var i=0; i<imp.length; i++){
+			 val = imp[i];
+			 new_html += "<img src='"+ folder + val +"' style='width:25%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+		 }
+		 /* $.ajax({
+			url : folder,
+			success: function (data) {
+			$(data).find("a").attr("href", function (i, val) {
+			if( val.match(/\.(jpe?g|png|gif)$/) ) {
+			new_html += "<img src='"+ folder + val +"' style='width:45%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+			} 
+			});
+			},
+			async: false
+			}); */
+		 new_html += "</div>";
 
-	 //Push the survey down
-	 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
-	 new_html += "</div>";
-	 return new_html;
+		 //Push the survey down
+		 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+		 new_html += "</div>";
+		 return new_html;
      }
 
      function queueVisited(){
-	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
-	 usernames = Array.from(new Set(usernames));
-	 //Here you can put a function that determines how the users will be selected
-	 //For now, I'm just going to choose pairs randomly
-	 if (usernames.length % 2 == 1){
-	     usernames.pop(); 
-	 }
-	 var pairs = shuffleArray(usernames).reduce(function(result, value, index, array) {
-	     if (index % 2 === 0)
-		 result.push(array.slice(index, index + 2));
-	     return result;
-	 }, []);
-	 var number_of_pages = 3;
-	 pairs = pairs.slice(0,number_of_pages);
+		 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
+		 usernames = Array.from(new Set(usernames));
+		 //Here you can put a function that determines how the users will be selected
+		 //For now, I'm just going to choose pairs randomly
 
-	 if (pairs.length > 0){
-	     for (var i=0;i<pairs.length;i++){
-		 left_animal = pairs[i][0].substring( 0, pairs[i][0].match(/_/).index );
-		 right_animal = pairs[i][1].substring( 0, pairs[i][1].match(/_/).index );
-		 /* animal_capitalized = selected_animals[i].charAt(0).toUpperCase() + selected_animals[i].slice(1);
-		    animals_fullnames = Object.keys(friendlist).filter(a=>a.includes(animal_capitalized));
-		    left_animal_fullname = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
-		    left_animal = left_animal_fullname.substring( 0, left_animal_fullname.match(/_/).index );
-		    animals_fullnames.splice(animals_fullnames.indexOf(left_animal_fullname));
-		    right_animal = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
-		    right_animal = right_animal.substring( 0, right_animal.match(/_/).index ); */
+		 //The following randomly chooses two users that were visited in the session
+		 /* if (usernames.length % 2 == 1){
+			usernames.pop(); 
+			}
+			var pairs = shuffleArray(usernames).reduce(function(result, value, index, array) {
+			if (index % 2 === 0)
+			result.push(array.slice(index, index + 2));
+			return result;
+			}, []);
+			var number_of_pages = 3;
+			pairs = pairs.slice(0,number_of_pages); */
+		 
+		 //The following randomly chooses some number of manually selected pairs
+		 var number_of_pages = 5; //NOTE! This is out of 18 possible page choices
+		 var pairs = shuffleArray(comppagelist);
+		 pairs = pairs.slice(0,number_of_pages);
 
-		 new_html = comparisonPageGenerator(left_animal,pairs[i][0],right_animal,pairs[i][1]);
-		 jsPsych.addNodeToEndOfTimeline({
-		     type: 'survey-likert',
-		     preamble: new_html,
-		     randomize_question_order: true, 
-		     on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
-		     questions: [{prompt: 'These two users are similar.', labels: likert_agreement_7, required: true},
-				 {prompt: 'These two users have interests in common outside of their profiles.', labels: likert_agreement_7, required: true}]
-		 },function(){});
-	     }
-	     jsPsych.addNodeToEndOfTimeline(break_point_3,function(){});
-	 }
+		 if (pairs.length > 0){
+			 for (var i=0;i<pairs.length;i++){
+				 left_animal = pairs[i][0].substring( 0, pairs[i][0].match(/_/).index );
+				 right_animal = pairs[i][1].substring( 0, pairs[i][1].match(/_/).index );
+				 /* animal_capitalized = selected_animals[i].charAt(0).toUpperCase() + selected_animals[i].slice(1);
+					animals_fullnames = Object.keys(friendlist).filter(a=>a.includes(animal_capitalized));
+					left_animal_fullname = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
+					left_animal = left_animal_fullname.substring( 0, left_animal_fullname.match(/_/).index );
+					animals_fullnames.splice(animals_fullnames.indexOf(left_animal_fullname));
+					right_animal = animals_fullnames[Math.floor(Math.random() * animals_fullnames.length)];
+					right_animal = right_animal.substring( 0, right_animal.match(/_/).index ); */
+
+				 new_html = comparisonPageGenerator(left_animal,pairs[i][0],right_animal,pairs[i][1]);
+				 jsPsych.addNodeToEndOfTimeline({
+					 type: 'survey-likert',
+					 preamble: new_html,
+					 randomize_question_order: true, 
+					 on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
+					 questions: [{prompt: 'These two users are similar.', labels: likert_agreement_7, required: true},
+								 {prompt: 'These two users could have interests in common.', labels: likert_agreement_7, required: true}]
+				 },function(){});
+			 }
+			 jsPsych.addNodeToEndOfTimeline(break_point_3,function(){});
+		 }
      }
 
      function queueOneToAll(){
-	 //This function appends survey questions about comparing an individual to a group
-	 //Generate list of pages
-	 //The following function can be anything
-	 var data = jsPsych.data.get().values();
-	 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
-	 var pages = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
-	 var new_html = "";
-	 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
-	 usernames = shuffleArray(usernames);
-	 var number_of_pages = 3; //This should be okay as long as the user is forced to visit >X profiles
-	 
-	 for (var i=0;i<number_of_pages;i++){
-	     console.log(i);
-	     console.log(pages);
-	     animal = usernames[i].substring( 0, usernames[i].match(/_/).index );
-	     new_html = singlePageGenerator(animal,usernames[i]);
-	     jsPsych.addNodeToEndOfTimeline({
-		 type: 'survey-likert',
-		 preamble: new_html,
-		 randomize_question_order: true,
-		 on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
-		 questions: [{prompt: 'This person belongs in a group about '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true},
-			     {prompt: 'This person has many friends in common with people who like '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true},
-			     {prompt: 'People who post photos about '+pages[i].toLowerCase()+' are aware of this person.', labels: likert_agreement_7, required: true}]
-	     },function(){});
-	 }
-	 jsPsych.addNodeToEndOfTimeline(break_point_4,function(){});
+		 //This function appends survey questions about comparing an individual to a group
+		 //Generate list of pages
+		 //The following function can be anything
+		 var data = jsPsych.data.get().values();
+		 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
+		 var pages = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
+		 var new_html = "";
+		 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
+		 usernames = shuffleArray(usernames);
+		 var number_of_pages = 4; //This should be okay as long as the user is forced to visit >X profiles
+		 
+		 for (var i=0;i<number_of_pages;i++){
+			 //console.log(i);
+			 //console.log(pages);
+			 animal = usernames[i].substring( 0, usernames[i].match(/_/).index );
+			 new_html = singlePageGenerator(animal,usernames[i]);
+			 jsPsych.addNodeToEndOfTimeline({
+				 type: 'survey-likert',
+				 preamble: new_html,
+				 randomize_question_order: true,
+				 on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
+				 questions: [{prompt: 'This person belongs in a group that likes '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true},
+							 {prompt: 'This person has many friends in common with people who like '+pages[i].toLowerCase()+'.', labels: likert_agreement_7, required: true}]
+			 },function(){});
+		 }
+		 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
      }
 
      function queueAllToAll(){
-	 //This function appends survey questions about comparing groups to each other
-	 //Generate list of pages
-	 var data = jsPsych.data.get().values();
-	 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
-	 //This function can be anything
-	 var responses = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
-	 if (responses.length % 2 == 1){
-	     responses.pop(); 
-	 }
-	 var pairs = responses.reduce(function(result, value, index, array) {
-	     if (index % 2 === 0)
-		 result.push(array.slice(index, index + 2));
-	     return result;
-	 }, []);
-	 var number_of_pages = 2;
-	 if (pairs.length<2){
-	     number_of_pages = pairs.length;
-	 }
-	 var new_html = "";
+		 //This function appends survey questions about comparing groups to each other
+		 //Generate list of pages
+		 var data = jsPsych.data.get().values();
+		 var index = data.map(a => a.trial_type).indexOf('survey-multi-select');
+		 //This function can be anything
+		 var responses = shuffleArray( JSON.parse(data[index]['responses'])['Q0'] );
+		 if (responses.length % 2 == 1){
+			 responses.pop(); 
+		 }
+		 var pairs = responses.reduce(function(result, value, index, array) {
+			 if (index % 2 === 0)
+				 result.push(array.slice(index, index + 2));
+			 return result;
+		 }, []);
+		 var number_of_pages = 2;
+		 if (pairs.length<2){
+			 number_of_pages = pairs.length;
+		 }
+		 var new_html = "";
 
-	 for (var i=0;i<number_of_pages;i++){
-	     group_0 = pairs[i][0];
-	     group_1 = pairs[i][1];
-	     new_html = "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
+		 for (var i=0;i<number_of_pages;i++){
+			 group_0 = pairs[i][0];
+			 group_1 = pairs[i][1];
+			 new_html = "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
 	 <p>Consider the following two types of content and the people who had this content on their profiles:</p>\
 <p><b>"+group_0+"</b> and <b>"+group_1+"</b></p></div>";
-	     jsPsych.addNodeToEndOfTimeline({
-		 type: 'survey-likert',
-		 preamble: new_html,
-		 randomize_question_order: true,
-		 questions: [{prompt: 'These groups are similar, based on their friendships.', labels: likert_agreement_7, required: true},
-			     {prompt: 'Based on their mutual connections, these groups would get along.', labels: likert_agreement_7, required: true}]
-	     },function(){});
-	 }
-	 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
+			 jsPsych.addNodeToEndOfTimeline({
+				 type: 'survey-likert',
+				 preamble: new_html,
+				 randomize_question_order: true,
+				 questions: [{prompt: 'These groups are similar, based on their friendships.', labels: likert_agreement_7, required: true},
+							 {prompt: 'Based on their mutual connections, these groups would get along.', labels: likert_agreement_7, required: true}]
+			 },function(){});
+		 }
+		 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
      }
 
      var group_selection = {
-	 type: 'survey-multi-select',
-	 preamble: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
+		 type: 'survey-multi-select',
+		 preamble: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
 	 <p>For the next part of the survey, we need to know what kinds of content you saw people share while you were browsing people's profiles. </p>",
-	 questions: [
-	     {
-		 prompt: "What sort of content did you see represented in the social network?", 
-		 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Nature", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Water"],
-		 horizontal: true,
-		 required: true,
-		 name: 'Represented Content Tags',
-	     }, 
-	     {
-		 prompt: "Which of the following kinds of content were missing from the social network?", 
-		 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Nature", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Water"],
-		 horizontal: true,
-		 required: true,
-		 name: 'Missing Content Tags',
-	     }
-	 ],
-	 on_finish: function(){
-	     jsPsych.addNodeToEndOfTimeline(break_point_35, jsPsych.resumeExperiment);
-	 }
+		 questions: [
+			 {
+				 prompt: "What sort of content did you see represented in the social network?", 
+				 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Animals", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Fresh Water"],
+				 horizontal: true,
+				 required: true,
+				 name: 'Represented Content Tags',
+			 }, 
+			 {
+				 prompt: "Which of the following kinds of content were missing from the social network?", 
+				 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Animals", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Fresh water"],
+				 horizontal: true,
+				 required: true,
+				 name: 'Missing Content Tags',
+			 }
+		 ],
+		 on_finish: function(){
+			 jsPsych.addNodeToEndOfTimeline(break_point_35, jsPsych.resumeExperiment);
+		 }
      };
      
      //FINALIZER QUESTIONS
      
      var difficulty_likert_page = {
-	 type: 'survey-likert',
-	 questions: [{prompt: "I understood what this experiment was asking of me.", labels: likert_agreement_7, required: true},
-		     {prompt: "I was able to do this task easily.", labels: likert_agreement_7, required: true}]
+		 type: 'survey-likert',
+		 questions: [{prompt: "I understood what this experiment was asking of me.", labels: likert_agreement_7, required: true},
+					 {prompt: "I was able to do this task easily.", labels: likert_agreement_7, required: true}]
      };
 
      var age_ranges = ["18-21","22-25","26-30","31-35","36-40","40-50","50-60","60-70","70-80"];
@@ -544,23 +557,23 @@
      var education = ["No schooling completed", "Nursery school to 8th grade", "Some high school, no diploma", "High school graduate, diploma or the equivalent (for example: GED)", "Some college credit, no degree", "Trade/technical/vocational training", "Associate degree", "Bachelor’s degree", "Master’s degree", "Professional degree", "Doctorate degree"];
      
      var demographics_ender = {
-	 type: 'survey-multi-choice',
-	 questions: [{prompt: "Age: ", options: age_ranges},
-		     {prompt: "Ethnicity: ", options: ethnicity},
-		     {prompt: "Education level (completed or pursuing): ", options: education}]
+		 type: 'survey-multi-choice',
+		 questions: [{prompt: "Age: ", options: age_ranges},
+					 {prompt: "Ethnicity: ", options: ethnicity},
+					 {prompt: "Education level (completed or pursuing): ", options: education}]
      }
      
      var open_box_ender = {
-	 type: 'survey-text',
-	 questions: [{prompt: "Any other thoughts about the community structures in this study:"},
-		     {prompt: "Other points of confusion while participating in this study:"},
-		     {prompt: "Further questions or concerns regarding this study:"}]
+		 type: 'survey-text',
+		 questions: [{prompt: "Any other thoughts about the community structures in this study:"},
+					 {prompt: "Other points of confusion while participating in this study:"},
+					 {prompt: "Further questions or concerns regarding this study:"}]
      }
 
      
      /*---------------------------------
-	INITIALIZATION
-	--------------------------------*/
+		INITIALIZATION
+		--------------------------------*/
 
      //Beginning stuff
      //timeline.push(welcome);
@@ -568,45 +581,45 @@
      timeline.push(SCoSN_interface);
 
      /*MODULAR NOTES
-	scosn-interface detects a 'null' user, ends, and goes to break point 2
-	break point 2 adds in the survey instructions as well as the page to generate close knit questions
-	close knit questions are added, 
+		scosn-interface detects a 'null' user, ends, and goes to break point 2
+		break point 2 adds in the survey instructions as well as the page to generate close knit questions
+		close knit questions are added, 
       */
 
      //End stuff
      function static_conclusion_appender(){
-	 jsPsych.addNodeToEndOfTimeline(difficulty_likert_page,function(){});
-	 //jsPsych.addNodeToEndOfTimeline(demographics_ender,function(){});
-	 jsPsych.addNodeToEndOfTimeline(open_box_ender,function(){});
-	 jsPsych.addNodeToEndOfTimeline(summary_page,function(){});
-	 jsPsych.addNodeToEndOfTimeline(conclusion,jsPsych.resumeExperiment);
+		 jsPsych.addNodeToEndOfTimeline(difficulty_likert_page,function(){});
+		 //jsPsych.addNodeToEndOfTimeline(demographics_ender,function(){});
+		 jsPsych.addNodeToEndOfTimeline(open_box_ender,function(){});
+		 jsPsych.addNodeToEndOfTimeline(summary_page,function(){});
+		 jsPsych.addNodeToEndOfTimeline(conclusion,jsPsych.resumeExperiment);
      }
 
      function save_data() {
-	 var data = jsPsych.data.getData();
-	 $.ajax({
-	     type: 'post',
-	     cache: false,
-	     url: 'php/write_data.php',
-	     data: {
-		 "table": "scosn_vw",
-		 "new_data": JSON.stringify(data)
-	     }
-	 });
+		 var data = jsPsych.data.getData();
+		 $.ajax({
+			 type: 'post',
+			 cache: false,
+			 url: 'php/write_data.php',
+			 data: {
+				 "table": "scosn_vw",
+				 "new_data": JSON.stringify(data)
+			 }
+		 });
      }
      
      /* function saveData(name, data){
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', 'write_data.php'); // 'write_data.php' is the path to the php file described above.
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.send(JSON.stringify({filename: name, filedata: data}));
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'write_data.php'); // 'write_data.php' is the path to the php file described above.
+		xhr.setRequestHeader('Content-Type', 'application/json');
+		xhr.send(JSON.stringify({filename: name, filedata: data}));
       * } */
      
      jsPsych.init({
-	 display_element: 'jspsych-target',
-	 //show_progress_bar: true,
-	 timeline: timeline,
-	 on_finish: function(){ jsPsych.data.displayData(); }
+		 display_element: 'jspsych-target',
+		 //show_progress_bar: true,
+		 timeline: timeline,
+		 on_finish: function(){ jsPsych.data.displayData(); }
      });
      
     </script>
