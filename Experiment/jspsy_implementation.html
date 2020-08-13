@@ -2,113 +2,158 @@
 <html>
 
     <!--###########################################
-	 # HEADER, IMPORT SCRIPTS
-	 ############################################-->
+		 # HEADER, IMPORT SCRIPTS
+		 ############################################-->
     
     <head>
-	
-	<title>Social Network Study</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+		<title>Social Network Study</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-	<link href="jspsych-6.0.4/css/jspsych.css" rel="stylesheet" type="text/css"></link>
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link href="jspsych-6.0.4/css/jspsych.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-	<script src="jspsych-6.0.4/jspsych.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-html-keyboard-response.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-html-button-response.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-survey-likert.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-survey-text.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-choice.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-select.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-instructions.js"></script>
-	<script src="jspsych-6.0.4/plugins/jspsych-scosn-interface.js"></script>
-	<script src="networks/friendslist.js"></script>
-	<script src="networks/imagemap.js"></script>
-	<script src="networks/comppagelist.js"></script>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<style>
-	 /* width */
-	 ::-webkit-scrollbar {
-	     width: 10px;
-	 }
+		<script src="jspsych-6.0.4/jspsych.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-html-keyboard-response.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-html-button-response.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-survey-likert.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-survey-text.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-choice.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-survey-multi-select.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-instructions.js"></script>
+		<script src="jspsych-6.0.4/plugins/jspsych-scosn-interface.js"></script>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		 /* width */
+		 ::-webkit-scrollbar {
+			 width: 10px;
+		 }
 
-	 /* Track */
-	 ::-webkit-scrollbar-track {
-	     background: #f9f9f9; 
-	 }
-	 
-	 /* Handle */
-	 ::-webkit-scrollbar-thumb {
-	     background: #bec1c6; 
-	 }
+		 /* Track */
+		 ::-webkit-scrollbar-track {
+			 background: #f9f9f9; 
+		 }
+		 
+		 /* Handle */
+		 ::-webkit-scrollbar-thumb {
+			 background: #bec1c6; 
+		 }
 
-	 /* Handle on hover */
-	 ::-webkit-scrollbar-thumb:hover {
-	     background: #999; 
-	 }
+		 /* Handle on hover */
+		 ::-webkit-scrollbar-thumb:hover {
+			 background: #999; 
+		 }
 
-	 .button {
-	     background-color: #4CAF50; /* Green */
-	     border: none;
-	     color: white;
-	     padding: 15px 32px;
-	     text-align: center;
-	     text-decoration: none;
-	     display: inline-block;
-	     font-size: 16px;
-	 }
-	</style>
+		 .button {
+			 background-color: #4CAF50; /* Green */
+			 border: none;
+			 color: white;
+			 padding: 15px 32px;
+			 text-align: center;
+			 text-decoration: none;
+			 display: inline-block;
+			 font-size: 16px;
+		 }
+		</style>
     </head>
 
 
     <!--###########################################
-	 # BODY, WHERE THE DIVS LIVE
-	 ############################################-->
+		 # BODY, WHERE THE DIVS LIVE
+		 ############################################-->
 
     <body>
-	<div id="consent" style="margin-left:100px;margin-right:100px;">
-  	    <p class="lead_right">IRB Study #0804000155 (97-763)</p>
-  	    <h1>INDIANA UNIVERSITY INFORMED CONSENT FOR</h1>
-  	    <h2>Concepts and Percepts</h2>
-  	    <p>You are invited to participate in a research study of how what we have learned can influence how people think, act, and make decisions.  You were selected as a possible subject because you contacted our research team expressing interest in participating.  We ask that you read this form and ask any questions you may have before agreeing to be in the study.</p>
-  	    <p>The study is being conducted by Dr. Robert Goldstone in the Department of Psychological and Brain Sciences.</p>
-  	    <h3>STUDY PURPOSE</h3>
-  	    <p>The purpose of this study is to better understand the ways that people see objects can change as they learn new tasks.</p>
-  	    <h3>NUMBER OF PEOPLE TAKING PART IN THE STUDY:</h3>
-  	    <p>If you agree to participate, you will be one of approximately 15000 subjects who will be participating in this research.</p>
-  	    <h3>PROCEDURES FOR THE STUDY:</h3>
-  	    <p>If you agree to be in the study, you will be presented with several straightforward tasks to complete.  These tasks will include responding with key strokes to images displayed on a computer monitor and may involve learning what categories objects belong in, determining if objects are identical or related, and transferring what you learn about objects in one training task to a related task.</p>
-  	    <p>The entire session should take a maximum of 30 minutes. You may only participate in the experiment once.</p>
-  	    <h3>RISKS OF TAKING PART IN THE STUDY:</h3>
-  	    <p>Participation in this study involves a potential risk of loss of confidentiality. </p>
-  	    <h3>BENEFITS OF TAKING PART IN THE STUDY:</h3>
-  	    <p>An understanding of how people change the way they see the world as they learn can help us to find more efficient methods to teach information and develop technologies that increase the speed of learning. You benefit from this experience because you learn something about how an experiment is designed and conducted, what issues are of interest to cognitive scientists, and what kinds of group behaviors emerge when individuals try to reach their goals in an environment that consists largely of other individuals.</p>
-  	    <h3>ALTERNATIVES TO TAKING PART IN THE STUDY:</h3>
-  	    <p>An alternative to participating in the study is to choose not to participate.</p>
-  	    <h3>CONFIDENTIALITY</h3>
-  	    <p>Efforts will be made to keep your personal information confidential.  We cannot guarantee absolute confidentiality.  Your personal information may be disclosed if required by law. Your identity will be held in confidence in reports in which the study may be published and in databases in which results may be stored.  Organizations that may inspect and/or copy your research records for quality assurance and data analysis include groups such as the study investigator and his/her research associates, the IUB Institutional Review Board or its designees, and (as allowed by law) state or federal agencies, specifically the Office for Human Research Protections (OHRP), etc. who may want to access your research records. </p>
-  	    <h3>PAYMENT</h3>
-  	    <p>For participating in this study, you will receive 0.5 credits for each 30 minutes you participate for Psychology 101, 102, or 155. Withdrawal prior to the completion of the study will result in no penalty or loss of benefits. </p>
-  	    <h3>CONTACTS FOR QUESTIONS OR PROBLEMS</h3>
-  	    <p>For questions about the study, contact the researcher Dr. Robert Goldstone at (812) 855-4853.  </p>
-  	    <p>For questions about your rights as a research participant or to discuss problems, complaints or concerns about a research study, or to obtain information, or offer input, contact the IU Human Subjects Office at (812) 856-4242 or by email at irb@iu.edu </p>
-  	    <h3>VOLUNTARY NATURE OF STUDY</h3>
-  	    <p>Taking part in this study is voluntary.  You may choose not to take part or may leave the study at any time.  Leaving the study will not result in any penalty or loss of benefits to which you are entitled and you will be compensated for your time up to that point.  Your decision whether or not to participate in this study will not affect your current or future relations with the investigator(s).</p>
-  	    <h3>SUBJECT'S CONSENT</h3>
-  	    <p>By checking below, you acknowledge that you have read and understand the above information, the you are 18 years of age or older, and give your consent to participate in our internet-based study.</p>
-  	    <p><input type="checkbox" id="consent_checkbox" />I agree to take part in this study.</p>
-  	    <p>Print this page if you want a copy for your records.</p>
-  	    <p>Form date: September 22, 2015</p>
-  	    <h3>Protocol 0804000155 IRB Approved</h3>
-  	    <button type="button" onclick="this.blur();start_experiment();">Start Experiment</button>
-	</div>
-	<div id="jspsych-target"></div>
+		<div id="consent" style="margin-left:100px;margin-right:100px;">
+			<p class="lead_right">IRB Study #2001686712</p>
+			<h1>INDIANA UNIVERSITY STUDY INFORMATION SHEET FOR RESEARCH</h1>
+			<h2>Cognition and Decision Making</h2>
+			<h3>About this research</h3>
+			<p>You are being asked to participate in a research study.  Scientists do research to answer important questions which might help change or improve the way we do things in the future. </p>
+			<p>This form will give you information about the study to help you decide whether you want to participate.  Please read this form, and ask any questions you have, before agreeing to be in the study. </p>
+			<h3>Taking part in this study is voluntary</h3>
+			<p>You may choose not to take part or may leave the study at any time.  Leaving the study will not result in any penalty or loss of benefits to which you are entitled.  Your decision whether or not to participate in this study will not affect your current or future relations with Indiana University.</p>
+			<p>This research is intended for individual 18 years of age or older.  If you are under age 18, do not complete the experiment.</p>
+			<h3>Why is this study being done?</h3>
+			<p>The purpose of this study is to examine how what people have learned can influence how they think, perceive, act, and make decisions.  This study is basic research in the area of cognitive psychology that focuses on learning and cognition.</p>
+			<p>You were selected as a possible participant because you are a member of the Indiana University Psychology Department Subject Pool.</p>
+			<p>The study is being conducted by Robert Goldstone, Professor of Psychological and Brain Sciences at Indiana University.</p>
+			<h3>What will happen during the study?</h3>
+			<p>If you agree to be in the study, you will do the following things: </p>
+			<p>You will be seated at a computer.  You will be presented with several straightforward tasks to complete.  These tasks will include responding with key strokes to stimuli (e.g., images, videos, words, or sounds) presented on the computer and may involve learning what categories objects (including sound objects) belong in, determining if objects are identical or related, or remembering or transferring what you learn about objects in one training task to a related task.  If the  experiment lasts for 30 minutes to 60 minutes, then this single session is the entire participation duration.  If the experiments lasts for 120 minutes, then this session will last for a maximum of 60 minutes, and a single follow-up session will also last for a maximum of 60 minutes.  If you are participating in the experiment in our laboratory, then you will participate in the experiment within a private cubicle in the Geology Building of Indiana University.
+				If you are participating in the experiment online, then you can participate wherever you wish. </p>
+			<h3>What are the risks and benefits of taking part in this study? </h3>
+			<p>The risks of participating in this research are a potential risk of loss of confidentiality. This risk is minimized by the investigator, as outlined in the section below.</p>
+			<p>We don't expect you to receive any benefit from taking part in this study, but we hope to learn things which will help scientists in the future.</p>
+			<h3>How will my information be protected?</h3>
+			<p>All research includes at least a small risk of loss of confidentiality. Efforts will be made to keep your personal information confidential.  We cannot guarantee absolute confidentiality.  Your personal information may be disclosed if required by law.  Your identity will be held in confidence in reports in which the study may be published and databases in which results may be stored.  </p>
+			<p>Organizations that may inspect and/or copy your research records for quality assurance and data analysis include groups such as the study investigator and his/her research associates, the Indiana University Institutional Review Board or its designees, and any state or federal agencies who may need to access your research records (as allowed by law).</p>
+			<h3>Will I be paid for participation? </h3>
+			<p>For participating in this study, you will receive 0.5 credits for each 30 minutes you participate for Psychology 101, 102, or 155. Withdrawal prior to the completion of the study will result in no penalty or loss of benefits.. Instead of participating in this study, you can participate in another study advertised on the SONA website for the subject pool, or you can arrange an alternative assignment that takes a comparable amount of time, such as writing a short essay on a specific experiment. </p>
+			<h3>Who should I call with questions or problems?</h3>
+			<p>For questions about the study, contact the researcher, Robert Goldstone at 812-855-4853. </p>
+			<p>For questions about your rights as a research participant or to discuss problems, complaints or concerns about a research study, or to obtain information, or offer input, please contact the IU Human Subjects Office at 800-696-2949 or at irb@iu.edu.</p>
+			<h3>Notes</h3>
+			<p>This experiments runs best on Firefox or Chrome web browsers.</p>
+
+  			<h3>SUBJECT'S CONSENT</h3>
+  			<p>By checking below, you acknowledge that you have read and understand the above information, the you are 18 years of age or older, and give your consent to participate in our internet-based study.</p>
+  			<p><input type="checkbox" id="consent_checkbox" />I agree to take part in this study.</p>
+  			<p>Print this page if you want a copy for your records.</p>
+  			<button type="button" onclick="this.blur();start_experiment();">Start Experiment</button>
+		</div>
+		<div id="jspsych-target"></div>
     </body>
     
     <!--###########################################
-	 # SCRIPTS, WHERE THE FUNCTIONS LIVE
-	 ############################################-->
+		 # SCRIPTS, WHERE THE FUNCTIONS LIVE
+		 ############################################-->
+	<script>
+	 function getQueryVariable(variable)
+	 {
+		 var query = window.location.search.substring(1);
+		 var vars = query.split("&");
+		 for (var i=0;i<vars.length;i++) {
+             var pair = vars[i].split("=");
+             if(pair[0] == variable){return pair[1];} //will be 'true' for now
+		 }
+		 return("false");
+	 }
+	 
+	 var subject = getQueryVariable("id");
+	 var possible_networks = [0,1,2,3];
+	 var network_num = possible_networks[Math.floor(Math.random()*possible_networks.length)].toString();
+	 var network_choice = "network_" + network_num;
+	 //Variables for number of pages per survey type can be found by C-s number_of_pages
+
+	 //Dynamically importing the relevant friendslist.js, imagemap.js, and comppagelist.js
+	 var friendlist_num_js = document.createElement('script');
+	 friendlist_num_js.setAttribute('src','networks/friendslist'+network_num+'.js');
+	 //friendlist_num_js.async = false;
+	 document.head.appendChild(friendlist_num_js);
+
+	 var imagemap_num_js = document.createElement('script');
+	 imagemap_num_js.setAttribute('src','networks/imagemap'+network_num+'.js');
+	 //imagemap_num_js.async = false;
+	 document.head.appendChild(imagemap_num_js);
+
+	 var comppagelist_num_js = document.createElement('script');
+	 comppagelist_num_js.setAttribute('src','networks/comppagelist'+network_num+'.js');
+	 //comppagelist_num_js.async = false;
+	 document.head.appendChild(comppagelist_num_js);
+
+	 var req_prof_js = document.createElement('script');
+	 req_prof_js.setAttribute('src','networks/reqprof'+network_num+'.js');
+	 //req_prof_js.async = false;
+	 document.head.appendChild(req_prof_js);
+
+	 var target_prof_js = document.createElement('script');
+	 target_prof_js.setAttribute('src','networks/targetprof'+network_num+'.js');
+	 //target_prof_js.async = false; 
+	 document.head.appendChild(target_prof_js);
+	 
+	</script>
+	
     <script>
      $("#jspsych-target").hide();
 	 //The following disables the use of backspace as a back button
@@ -117,87 +162,101 @@
 			 e.preventDefault();
 		 }
 	 });
-	 
+
      /*---------------------------------
 		INTRO AND EXIT
 		--------------------------------*/
      function check_consent(){
   		 return document.getElementById('consent_checkbox').checked;
      }
-     
+
      function start_experiment(){
 		 if(check_consent()){
-  			 $('#consent').hide();
+			 $('#consent').hide();
 			 $("#jspsych-target").show();
 		 } else {
-  			 alert("You must consent to participate in the study by checking the box next to the statement 'I agree to participate in this study.'");
-  		 }
+			 alert("You must consent to participate in the study by checking the box next to the statement 'I agree to participate in this study.'");
+		 }
      }
-     
+
      var timeline = [];
-     var possible_networks = ['network_0','network_1','network_2'];
-     var network_choice = 'network_2'; //possible_networks[Math.floor(Math.random()*possible_networks.length)];
-     
-     var welcome = {
+	 var welcome = {
 		 type: 'html-keyboard-response',
 		 stimulus: "<div class='w3-animate-opacity'><h1>Welcome</h1></div>",
 		 choices: jsPsych.NO_KEYS,
 		 trial_duration: 2000,
 		 post_trial_gap: 100
-     };
+	 };
 
-     var instructions = {
+	 var instructions = {
 		 type: 'html-button-response',
 		 stimulus: "<div class='w3-animate-opacity' style='width:65%;display:inline-block;'>\
-	 <p><b>INTRODUCTION</b>: <br> For this study, you will be presented with content from an online social network. You will be shown different user profiles, the images they have shared on their page, and that user's friends.</p>\
-<p>You will be able to freely click on a user's friends to go to that person's profile. If you like any images, you can click on the image to indicate that you like it. Images you've liked will turn green (see example below).</p>\
-<p><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;'><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid green;border-radius: 8px;opacity: 0.75;'></p>\
-	 <p><b><i>TASK</i></b>: Your goal is to click around to different profiles. Try to get a sense of the social groups in the network by visiting profiles and clicking on any images that you like. In order to continue to the survey, you will need to visit at least 60 unique user profiles in the social network. The button to continue to the survey will keep track of your progress. When you've visited enough profiles, the button will turn green and you will be able to go on to the survey. </p>\
-	 <p><b><i>SURVEY</i></b>: After you are done exploring the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed. You are not required to memorize any content, and you will be provided with the necessary information to answer questions.</p>\
-	 <p><i>Press the button below to start the study.</i></p></div>",
+		<p><b>INTRODUCTION</b>: <br> For this study, you will be presented with content from an online social network. You will be shown a simplified version of different user profiles, the images they have shared on their page, and that user's friends.</p>\
+		<p>You will be able to freely click on a user's friends to go to that person's profile. If you like any images, you can click on the image to indicate that you like it. Images you've liked will turn green (see example below).</p>\
+		<p><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;'><img src='data/instructions_img.jpg' style='width:45%;height:auto;margin: 20px 20px;border-bottom: 7px solid green;border-radius: 8px;opacity: 0.75;'></p>\
+		<p><b><i>TASK</i></b>: Your goal is to try to find a specific profile by clicking around to different profiles. Try to get a sense of the social groups in the network by visiting profiles and clicking on any images that you like. You will need to find the target profile in order to continue to the survey and finish your participation in the study. The username of this profile will appear in the top left corner of the interface in case you forget it. The button to continue to the survey will turn green when you've found your goal. When the button is green, you can click it to move on to the survey.</p>\
+		<p><b><i>SURVEY</i></b>: After you are done exploring the social network, you will be given a survey about the people you just observed. You will be asked about your impressions of any groups you observed. You will also be asked for your impressions of specific users you viewed. You are not required to memorize any content, and you will be provided with the necessary information to answer questions.</p>\
+		<p><i>Press the button below to start the study.</i></p></div>",
 		 choices: ['Begin!'],
-		 post_trial_gap: 250
-     };
+		 data: {network: network_choice,
+				participant: subject},
+		 post_trial_gap: 250,
+		 on_load: function(){
+			 saveData("experiment_data_", subject, jsPsych.data.get().csv());
+		 }
+	 };
 
-     var survey_instructions = {
+	 var survey_instructions = {
 		 type: 'html-button-response',
 		 stimulus: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
-	 <p>You've done the first part! In this next part, you will take a survey about what you saw in the social network. You will be asked about your sense of communities in terms of characteristics like closeness, diversity, exclusivity, etc.</p>\
-	 <p>You will also be provided open boxes to describe your thoughts that don't fit into the survey framework. Lastly, you'll be asked for some basic demographic information, and about your experiences with this study.</p>\
-	 <p><i>Press the button below to continue.</i></p></div>",
+			<p>You've done the first part! In this next part, you will take a survey about what you saw in the social network. You will be asked about your sense of the communities and people within them. </p>\
+<p>Each short page of the survey will ask you 2 or 3 questions about a user you might have seen in the network. There are three groups of pages with 4 or 5 short pages each (about 15 pages total). </p>\
+			<p>You will also be provided open boxes to describe your thoughts that don't fit into the survey framework. Lastly, you'll be asked about your experiences with this study.</p>\
+			<p><i>Press the button below to continue.</i></p></div>",
 		 choices: ["Let's go!"],
 		 post_trial_gap: 250,
 		 on_load: queueVisited
-     }
-     
-     var summary_page = {
+	 }
+
+	 var target_preview = {
+		 type: 'html-button-response',
+		 stimulus: "",
+		 choices: ["Continue to social media"],
+		 post_trial_gap: 250,
+		 on_load: targetPageGenerator
+	 }
+	 
+	 var summary_page = {
 		 type: 'html-button-response',
 		 stimulus: "<div class='w3-animate-opacity'><p><h3>You have completed the experiment.</h3><br>\
-	 Please press the button below to submit your response.</p></div",
+				Please press the button below to submit your response.</p></div",
 		 choices: ['Submit'],
 		 //prompt: "<div class='w3-animate-opacity'><p>Please press the button below to submit your response.</p></div"
 		 post_trial_gap: 250
-     }
-     
-     var conclusion = {
-		 type: "html-keyboard-response",
-		 stimulus: "<div class='w3-animate-opacity'><p><br><br><br><br><h1> Thank you for participating!</h1></p></div>"
-     };
+	 }
 
-     /*---------------------------------
+	 var conclusion = {
+		 type: "html-keyboard-response",
+		 stimulus: "<div class='w3-animate-opacity'><p><br><br><br><br><h1> Thank you for participating!</h1></p></div>",
+		 on_load: function(){
+			 saveData("experiment_data_", subject, jsPsych.data.get().csv());
+		 }
+	 };
+
+	 /*---------------------------------
 		BREAK POINT INFRASTRUCTURE
 		--------------------------------*/
-     //BREAK POINTS HANDLE ALL resumeExperiments!!
-     //break_point_1 is implicitly embedded in the scosn interface
+	 //BREAK POINTS HANDLE ALL resumeExperiments!!
+	 //break_point_1 is implicitly embedded in the scosn interface
 
-     //Breakpoint 00 is used for testing purposes only
-     var break_point_00 = {
-         type: 'html-keyboard-response',
+	 //Breakpoint 00 is used for testing purposes only
+	 var break_point_00 = {
+		 type: 'html-keyboard-response',
 		 stimulus: "END",
-     }
+	 }
 
-     //Transition from interface to INDIV-INDIV survey questions
-     var break_point_2 = {
+	 //Transition from interface to INDIV-INDIV survey questions
+	 var break_point_2 = {
 		 type: 'html-keyboard-response',
 		 stimulus: "",//"BREAK POINT 2 (INDIV-INDIV SURVEY STUFF NEXT)",
 		 choices: jsPsych.NO_KEYS,
@@ -205,10 +264,10 @@
 		 on_finish: function(){
 			 jsPsych.addNodeToEndOfTimeline(survey_instructions,jsPsych.resumeExperiment);
 		 }
-     };
+	 };
 
-     //Transition from INDIV-INDIV survey questions to asking about groups
-     var break_point_3 = {
+	 //Transition from INDIV-INDIV survey questions to asking about groups
+	 var break_point_3 = {
 		 type: 'html-keyboard-response',
 		 stimulus: "",//"BREAK POINT 3 (GROUP SELECTION STUFF NEXT)",
 		 choices: jsPsych.NO_KEYS,
@@ -216,9 +275,9 @@
 		 on_finish: function(){
 			 jsPsych.addNodeToEndOfTimeline(group_selection, jsPsych.resumeExperiment);
 		 }
-     };
+	 };
 
-     var break_point_35 = {
+	 var break_point_35 = {
 		 type: 'html-keyboard-response',
 		 stimulus: "",//"BREAK POINT 3.5 (GROUP SELECTION CONTINUATION NEXT)",
 		 choices: jsPsych.NO_KEYS,
@@ -227,9 +286,9 @@
 			 queueOneToAll();
 			 jsPsych.resumeExperiment();
 		 }
-     };
+	 };
 
-     var break_point_4 = {
+	 var break_point_4 = {
 		 type: 'html-keyboard-response',
 		 stimulus: "",//"BREAK POINT 4 (GROUP-GROUP SURVEY STUFF NEXT)",
 		 choices: jsPsych.NO_KEYS,
@@ -238,21 +297,21 @@
 			 queueAllToAll();
 			 jsPsych.resumeExperiment();
 		 }
-     };
+	 };
 
-     var break_point_5 = {
+	 var break_point_5 = {
 		 type: 'html-keyboard-response',
 		 stimulus: "",//"BREAK POINT 5 (STATIC CONCLUSION NEXT)",
 		 choices: jsPsych.NO_KEYS,
-		 trial_duration: 1000,
+		 trial_duration: 350,
 		 on_finish: static_conclusion_appender
-     };
-     
-     /*---------------------------------
+	 };
+
+	 /*---------------------------------
 		SCOSN INTERFACE
 		--------------------------------*/
 
-     function people_appender(){
+	 function people_appender(){
 		 jsPsych.pauseExperiment();
 		 next_person = jsPsych.data.get().last(1).values()[0].next_person;
 		 if (next_person!=null){
@@ -268,49 +327,74 @@
 			 jsPsych.addNodeToEndOfTimeline(break_point_2, jsPsych.resumeExperiment);
 			 //jsPsych.data.displayData()); <-- Use thise if you want to cut out the survey and just display data
 		 }
-     }
+	 }
 
-     var userlist = Object.keys(friendlist);
-     var choice_user = userlist[Math.floor(Math.random()*userlist.length)];
-     
-     var SCoSN_interface = {
+	 var userlist = ['SunsetZephyr_blank', 'xGlory_blank', 'Skyfox_blank', 'FaradayFire_blank', 'SkeletonFan_blank', '2toneKing_blank', 'ManiaDaze_blank', 'TiredChimes_blank', 'xValor_blank', 'SoulJan_blank', 'CreekJump_blank', 'EagleSyndrome_blank', 'TunnelOfFire_blank', 'SavageDork_blank', 'Glimpse294_blank', 'Dimple5_blank', '5DollarPool_blank', 'Turtinator_blank', 'Rob1096_blank', 'PebbleCandy_blank', 'C4irn_blank', 'FlyStone_blank', 'NewNerd_blank', 'SoundWolf_blank', '4Dfloor_blank', 'Robcat_blank', 'Spike80_blank',  'TempleOfTheDogs_blank', 'BlanketHeart_blank', 'ClockStar_blank', 'MeltyBats_blank', 'MrShroud_blank', 'BurnPuppy_blank', 'Memoralis8_blank', 'SatyrGate_blank', 'LinkBob_blank', 'Coffee987_blank', 'Inchworm_blank', 'HackerClue_blank', '45Divide_blank', 'Spenderson_blank', 'Shell12_blank', 'BeatnikDitty_blank', 'Fred2Day_blank', 'StrikerZero_blank', 'RegnumAlya_blank', 'JamFan56_blank', 'TwinCoastBoat_blank', 'GreyWay_blank', '5TineFork_blank', 'ShadowX_blank', 'Nocturnez_blank', 'BL0CKTR4P_blank', 'Vicario_blank', 'SquadjobGob_blank', 'v2Karate_blank', 'GeistBust_blank', 'Alexazam_blank', 'WubWub_blank', 'RoiVert_blank', 'WanderLost_blank', 'Philanthropos_blank', 'Legalend_blank', 'Aura_blank', 'RizuKing_blank', 'OPTIC_blank', 'Zoe53_blank', 'deValencia_blank', 'SunderBar_blank', 'FromAshes_blank', 'Rickr6_blank', 'Varelia_blank', 'TeaTreatTime_blank', 'GlinkaFan10_blank', 'Bashtion_blank', 'StriveDiver_blank', 'CookieBookie_blank', 'IpsoFasto_blank', 'TwrlGrl_blank', 'TheMacabre_blank', 'WestonCreation_blank', 'Limerick_blank', 'TheVeryCore_blank', 'Newtork_blank', 'ChildOfFire_blank', 'FlancyFlan_blank', 'Flick_blank', 'N0R4_blank', 'GlareBear_blank', 'Xalentor_blank']
+	 var represented_groups = ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Animals", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Fresh Water"];
+	 var choice_user = userlist[Math.floor(Math.random()*userlist.length)];
+	 
+	 var SCoSN_interface = {
 		 type: "scosn-interface",
-		 user: choice_user,
+		 user: "",
 		 network: network_choice,
 		 on_finish: people_appender                                                                         //BREAK PT1
-     };
+	 };
 
-     /*---------------------------------
+	 /*---------------------------------
 		SURVEY
 		--------------------------------*/
 
-     var likert_agreement_7 = ["Strongly Disagree", "Disagree", "Somewhat Disagree", "Neutral", "Somewhat Agree", "Agree", "Strongly Agree"];
-     //VERY BAD, NEEDS EDITING, MAYBE JUST USE AGREEMENT SCALE
-     var likert_similarity_7 = ["Not similar at all", "Not very similar", "Neutral", "Somewhat similar", "Similar", "Very similar"]; 
+	 var likert_agreement_7 = ["Strongly Disagree", "Disagree", "Somewhat Disagree", "Neutral", "Somewhat Agree", "Agree", "Strongly Agree"];
+	 //VERY BAD, NEEDS EDITING, MAYBE JUST USE AGREEMENT SCALE
+	 var likert_similarity_7 = ["Very different", "Different", "Somewhat different", "Neutral", "Somewhat similar", "Similar", "Very similar"]; 
 
-     function manualRecenterJS(divname){
+	 function manualRecenterJS(divname){
 		 var jsc = document.getElementById(divname);
 		 jsc.style.position = 'absolute';
 		 jsc.style.left = '50%';
 		 jsc.style.top = '60%';
 		 jsc.style.transform = 'translate(-50%,0%)';
-     }
-     
-     function shuffleArray(array) {
+	 }
+	 
+	 function shuffleArray(array) {
 		 for (let i = array.length - 1; i > 0; i--) {
-             const j = Math.floor(Math.random() * (i + 1));
-             [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
+			 const j = Math.floor(Math.random() * (i + 1));
+			 [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
 		 }
 		 return array;
-     }
+	 }
 
-     function singlePageGenerator(animal, animal_fullname){
-		 var new_html = "<div class='w3-animate-opacity' id='indiv_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
+	 function targetPageGenerator(){
+		 var target_profile_noblank = target_profile.substring( 0, target_profile.match(/_/).index );
+		 var new_html = "";
+		 new_html += "<div class='w3-animate-opacity' style='width:80%;display:inline-block;'>\
+			<br><br><p>Your task is to find the profile shown here. <br> As a reminder, you do not have to memorize the username you see here. <br> The username will appear at the top left of the interface. <br> Press the button below to continue.</p>";
+		 new_html += "<div class='w3-animate-opacity' id='indiv_div' style='width:100%;display:inline-block;height:"+window.innerHeight*0.70+"px;'>";
+		 //position: absolute; left: 3%; top: 5%;
+		 new_html += "<div id='animal_div' style='float: left;overflow-y: scroll;height: 100%; width: 94%; border: 3px solid grey;'>\
+				<p style='font-size:140%;float: center;'>\
+					<img src='animal-collection/png/"+"blank"+".png' id='"+target_profile_noblank+"' name='animalIcons' style='width:auto;height:100px;'>";
+		 new_html += target_profile_noblank + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
+		 var folder = "data/"+network_choice+"/"+target_profile+"/img/";
+		 var imp = imagemap[target_profile];
+		 //Populating images
+		 for (var i=0; i<imp.length; i++){
+			 val = imp[i];
+			 new_html += "<img src='"+ folder + val +"' style='width:20%;height:auto;margin: 20px 20px;border-radius: 8px;' id="+val+" name='imageContent'>";
+		 }
+		 new_html += "</div></div>";
+		 new_html += ""; //Pushing the button down
+		 //Push it out to the display
+		 document.getElementById("jspsych-html-button-response-stimulus").innerHTML = new_html;
+		 return new_html;
+	 }
+	 
+	 function singlePageGenerator(animal, animal_fullname){
+ 		 var new_html = "<div class='w3-animate-opacity' id='indiv_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
-		 //Add in left animal
 		 new_html += "<div id='animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 94%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
-<p style='font-size:140%;float: center;'>\
-<img src='animal-collection/png/"+"blank"+".png' id='"+animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+				<p style='font-size:140%;float: center;'>\
+					<img src='animal-collection/png/"+"blank"+".png' id='"+animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 		 new_html += animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 		 var folder = "data/"+network_choice+"/"+animal_fullname+"/img/";
 		 var imp = imagemap[animal_fullname];
@@ -334,20 +418,20 @@
 		 new_html += "</div>";
 		 
 		 //Push the survey down
-		 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+		 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 		 new_html += "</div>";
 		 return new_html;	 
-     }
-     
-     function comparisonPageGenerator(left_animal, left_animal_icon, right_animal, right_animal_icon){
+	 }
+	 
+	 function comparisonPageGenerator(left_animal, left_animal_icon, right_animal, right_animal_icon){
 		 //THIS FUNCTION OUTPUTS A STRING OF HTML FOR DISPLAYING TWO USERS SIDE BY SIDE
 		 //Generating display
 		 var new_html = "<div class='w3-animate-opacity' id='comparison_div' style='width:45%;display:inline-block;height:"+window.innerHeight*0.40+"px;'>";
 
 		 //Add in left animal
 		 new_html += "<div id='left_animal_div' style='float: left;overflow-y: scroll;height: 55%; width: 47%; position: absolute; left: 3%; top: 5%;border: 3px solid grey;'>\
-<p style='font-size:140%;float: center;'>\
-<img src='animal-collection/png/"+"blank"+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+						<p style='font-size:140%;float: center;'>\
+							<img src='animal-collection/png/"+"blank"+".png' id='"+left_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 		 new_html += left_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 		 var folder = "data/"+network_choice+"/"+left_animal_icon+"/img/";
 		 var imp = imagemap[left_animal_icon];
@@ -374,8 +458,8 @@
 		 
 		 //Add in right animal
 		 new_html += "<div id='right_animal_div' style='float: right;overflow-y: scroll;height:55%; width: 47%; position: absolute; left: 50%; top: 5%;border: 3px solid grey;'>\
-<p style='font-size:140%;float: center;'>\
-<img src='animal-collection/png/"+"blank"+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
+								<p style='font-size:140%;float: center;'>\
+									<img src='animal-collection/png/"+"blank"+".png' id='"+right_animal+"' name='animalIcons' style='width:auto;height:100px;'>";
 		 new_html += right_animal + "<br><hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6;'></p>";
 		 var folder = "data/"+network_choice+"/"+right_animal_icon+"/img/";
 		 var imp = imagemap[right_animal_icon];
@@ -401,9 +485,9 @@
 		 new_html += "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
 		 new_html += "</div>";
 		 return new_html;
-     }
+	 }
 
-     function queueVisited(){
+	 function queueVisited(){
 		 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
 		 usernames = Array.from(new Set(usernames));
 		 //Here you can put a function that determines how the users will be selected
@@ -444,15 +528,16 @@
 					 preamble: new_html,
 					 randomize_question_order: true, 
 					 on_load: function(){ manualRecenterJS('jspsych-survey-likert-form'); },
-					 questions: [{prompt: 'These two users are similar.', labels: likert_agreement_7, required: true},
-								 {prompt: 'These two users could have interests in common.', labels: likert_agreement_7, required: true}]
+					 questions: [{prompt: 'How similar are these users with regard to who they are?', labels: likert_similarity_7, required: true},
+								 {prompt: 'How similar are these users with regard to what they like?', labels: likert_similarity_7, required: true},
+								 {prompt: 'How similar are these users with regard to what they post?', labels: likert_similarity_7, required: true}]
 				 },function(){});
 			 }
 			 jsPsych.addNodeToEndOfTimeline(break_point_3,function(){});
 		 }
-     }
+	 }
 
-     function queueOneToAll(){
+	 function queueOneToAll(){
 		 //This function appends survey questions about comparing an individual to a group
 		 //Generate list of pages
 		 //The following function can be anything
@@ -462,7 +547,14 @@
 		 var new_html = "";
 		 var usernames = jsPsych.data.get().values().map(a => a.user).filter(function(n){ return n != undefined });
 		 usernames = shuffleArray(usernames);
-		 var number_of_pages = 4; //This should be okay as long as the user is forced to visit >X profiles
+		 var number_of_pages = 4;
+		 if (pages.length<number_of_pages){ //If the participant didn't indicate enough pages, add some in
+			 pages = shuffleArray(
+				 pages.concat(
+					 shuffleArray(represented_groups).slice(0, (number_of_pages - pages.length + 1))
+				 )
+			 );
+		 }
 		 
 		 for (var i=0;i<number_of_pages;i++){
 			 //console.log(i);
@@ -479,9 +571,9 @@
 			 },function(){});
 		 }
 		 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
-     }
+	 }
 
-     function queueAllToAll(){
+	 function queueAllToAll(){
 		 //This function appends survey questions about comparing groups to each other
 		 //Generate list of pages
 		 var data = jsPsych.data.get().values();
@@ -496,7 +588,7 @@
 				 result.push(array.slice(index, index + 2));
 			 return result;
 		 }, []);
-		 var number_of_pages = 2;
+		 var number_of_pages = 3;
 		 if (pairs.length<2){
 			 number_of_pages = pairs.length;
 		 }
@@ -506,8 +598,8 @@
 			 group_0 = pairs[i][0];
 			 group_1 = pairs[i][1];
 			 new_html = "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
-	 <p>Consider the following two types of content and the people who had this content on their profiles:</p>\
-<p><b>"+group_0+"</b> and <b>"+group_1+"</b></p></div>";
+		  <p>Consider the following two types of content and the people who had this content on their profiles:</p>\
+		  <p><b>"+group_0+"</b> and <b>"+group_1+"</b></p></div>";
 			 jsPsych.addNodeToEndOfTimeline({
 				 type: 'survey-likert',
 				 preamble: new_html,
@@ -517,23 +609,23 @@
 			 },function(){});
 		 }
 		 jsPsych.addNodeToEndOfTimeline(break_point_5,function(){});
-     }
+	 }
 
-     var group_selection = {
+	 var group_selection = {
 		 type: 'survey-multi-select',
 		 preamble: "<div class='w3-animate-opacity' style='width:45%;display:inline-block;'>\
-	 <p>For the next part of the survey, we need to know what kinds of content you saw people share while you were browsing people's profiles. </p>",
+										<p>For the next part of the survey, we need to know what kinds of content you saw people share while you were browsing people's profiles. </p>",
 		 questions: [
 			 {
 				 prompt: "What sort of content did you see represented in the social network?", 
-				 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Animals", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Fresh Water"],
+				 options: represented_groups,
 				 horizontal: true,
 				 required: true,
 				 name: 'Represented Content Tags',
 			 }, 
 			 {
 				 prompt: "Which of the following kinds of content were missing from the social network?", 
-				 options: ["Architecture", "Beaches", "Cities", "Clouds", "Dogs", "Flowers", "Graffiti", "Landscapes", "Animals", "Night", "People", "Portraits", "Oceans", "The sky", "Sunsets", "Trees", "Fresh water"],
+				 options: represented_groups,
 				 horizontal: true,
 				 required: true,
 				 name: 'Missing Content Tags',
@@ -542,60 +634,54 @@
 		 on_finish: function(){
 			 jsPsych.addNodeToEndOfTimeline(break_point_35, jsPsych.resumeExperiment);
 		 }
-     };
-     
-     //FINALIZER QUESTIONS
-     
-     var difficulty_likert_page = {
+	 };
+	 
+	 //FINALIZER QUESTIONS
+	 
+	 var difficulty_likert_page = {
 		 type: 'survey-likert',
 		 questions: [{prompt: "I understood what this experiment was asking of me.", labels: likert_agreement_7, required: true},
 					 {prompt: "I was able to do this task easily.", labels: likert_agreement_7, required: true}]
-     };
+	 };
 
-     var age_ranges = ["18-21","22-25","26-30","31-35","36-40","40-50","50-60","60-70","70-80"];
-     var ethnicity = ["Black or African American", "East Asian", "Hispanic or Latino", "Native American or American Indian", "Pacific Islander", "South Asian", "White", "Other"];
-     var education = ["No schooling completed", "Nursery school to 8th grade", "Some high school, no diploma", "High school graduate, diploma or the equivalent (for example: GED)", "Some college credit, no degree", "Trade/technical/vocational training", "Associate degree", "Bachelor’s degree", "Master’s degree", "Professional degree", "Doctorate degree"];
-     
-     var demographics_ender = {
+	 var age_ranges = ["18-21","22-25","26-30","31-35","36-40","40-50","50-60","60-70","70-80"];
+	 var ethnicity = ["Black or African American", "East Asian", "Hispanic or Latino", "Native American or American Indian", "Pacific Islander", "South Asian", "White", "Other"];
+	 var education = ["No schooling completed", "Nursery school to 8th grade", "Some high school, no diploma", "High school graduate, diploma or the equivalent (for example: GED)", "Some college credit, no degree", "Trade/technical/vocational training", "Associate degree", "Bachelor’s degree", "Master’s degree", "Professional degree", "Doctorate degree"];
+	 
+	 var demographics_ender = {
 		 type: 'survey-multi-choice',
 		 questions: [{prompt: "Age: ", options: age_ranges},
 					 {prompt: "Ethnicity: ", options: ethnicity},
 					 {prompt: "Education level (completed or pursuing): ", options: education}]
-     }
-     
-     var open_box_ender = {
+	 }
+	 
+	 var open_box_ender = {
 		 type: 'survey-text',
 		 questions: [{prompt: "Any other thoughts about the community structures in this study:"},
 					 {prompt: "Other points of confusion while participating in this study:"},
 					 {prompt: "Further questions or concerns regarding this study:"}]
-     }
+	 }
 
-     
-     /*---------------------------------
+	 
+	 /*---------------------------------
 		INITIALIZATION
 		--------------------------------*/
 
-     //Beginning stuff
-     //timeline.push(welcome);
-     timeline.push(instructions);
-     timeline.push(SCoSN_interface);
-
-     /*MODULAR NOTES
-		scosn-interface detects a 'null' user, ends, and goes to break point 2
-		break point 2 adds in the survey instructions as well as the page to generate close knit questions
-		close knit questions are added, 
-      */
-
-     //End stuff
-     function static_conclusion_appender(){
+	 //Beginning stuff
+	 //timeline.push(welcome);
+	 timeline.push(instructions);
+	 timeline.push(target_preview);
+	 timeline.push(SCoSN_interface);
+	 
+	 //End stuff
+	 function static_conclusion_appender(){
 		 jsPsych.addNodeToEndOfTimeline(difficulty_likert_page,function(){});
-		 //jsPsych.addNodeToEndOfTimeline(demographics_ender,function(){});
 		 jsPsych.addNodeToEndOfTimeline(open_box_ender,function(){});
 		 jsPsych.addNodeToEndOfTimeline(summary_page,function(){});
 		 jsPsych.addNodeToEndOfTimeline(conclusion,jsPsych.resumeExperiment);
-     }
+	 }
 
-     function save_data() {
+	 function save_data() {
 		 var data = jsPsych.data.getData();
 		 $.ajax({
 			 type: 'post',
@@ -606,25 +692,47 @@
 				 "new_data": JSON.stringify(data)
 			 }
 		 });
-     }
-     
-     /* function saveData(name, data){
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST', 'write_data.php'); // 'write_data.php' is the path to the php file described above.
-		xhr.setRequestHeader('Content-Type', 'application/json');
-		xhr.send(JSON.stringify({filename: name, filedata: data}));
-      * } */
-     
-     jsPsych.init({
+	 }
+
+
+	 function hashCode (str){
+		 var hash = 0;
+		 if (str.length == 0) return hash;
+		 for (i = 0; i < str.length; i++) {
+			 char = str.charCodeAt(i);
+			 hash = ((hash<<5)-hash)+char;
+			 hash = hash & hash; // Convert to 32bit integer
+		 }
+		 return hash;
+	 }
+	 
+	 function saveData(name, subject, data){
+		 //Hash subject name
+		 var newname = name + hashCode(subject);
+		 
+		 //THIS FUNCTION IS DIRECTLY FROM JSPSYCH WEBSITE. IT IS USED TO CALL PHP SCRIP TO SAVE DATA
+		 var xhr = new XMLHttpRequest();
+		 xhr.open('POST', 'write_data.php'); // 'write_data.php' is the path to the php file described above.
+		 xhr.setRequestHeader('Content-Type', 'application/json');
+		 xhr.send(JSON.stringify({filename: newname, filedata: data}));
+	 }
+
+	 function makeBlankData(name, subject, data){
+		 
+	 }
+	 
+	 jsPsych.init({
 		 display_element: 'jspsych-target',
 		 //show_progress_bar: true,
 		 timeline: timeline,
-		 on_finish: function(){ jsPsych.data.displayData(); }
-     });
-     
+		 on_finish: function(){
+			 // call the saveData function after the experiment is over
+			 // THIS IS FROM THE JSPSYCH WEBSITE
+			 // It is redundant. The script never finishes because it sticks to the ending page. The saveData function is actually run on load of the page after submission
+			 saveData("experiment_data_", subject, jsPsych.data.get().csv());
+		 }
+	 });
+	 
     </script>
     
 </html>
-
-<!-- var allnimals = ["ant-eater", "badger", "bear", "bull", "camel", "cat", "chameleon", "cock", "cow", "cow-1", "crocodile", "deer", "dog", "dolphin", "donkey", "duck", "elephant", "fish", "fox", "giraffe", "goat", "goose", "hedgehog", "hippopotamus", "horse", "kangaroo", "koala", "lion", "monkey", "moose", "mouse", "panda", "panther", "penguin", "pig", "rabbit", "racoon", "raven", "rhinoceros", "seal", "sheep", "snail", "snake", "squirrel", "tiger", "turtle", "unicorn", "vulture", "wolf", "zebra"];
--->

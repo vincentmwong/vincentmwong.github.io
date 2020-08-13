@@ -17,7 +17,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 				pretty_name: 'Network',
 				default: undefined,
 				description: 'The network that the user is engaging with.'
-			},
+			}
 		}
     }
 
@@ -48,10 +48,15 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		var liked_image_opacity = "0.75";
 		var minimum_visits_to_stop = 5;
 		var minimum_likes_to_stop = 5;
-		
+
 		/*------------------------------------
 		   GENERATE HEADER FOR CURRENT USER 
 		   -------------------------------------*/
+
+		if (trial.user==""){
+			trial.user = starting_profile;
+		}
+		
 		var new_html = "<center>\
 <div class='w3-animate-opacity' id='currentUser' name='currentUser' style='border: "+headerdiv.border+"; height: "+headerdiv.height+";width: "+headerdiv.width+"; margin: 0em 0;'>";
 		var datasofar = jsPsych.data.get().values();
@@ -71,6 +76,15 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		new_html += "</div></center>";
 		new_html += "<hr style='display: block;height: 1px; border: 0; border-top: 3px solid #bec1c6; margin: 0em 0; padding: 0;'>";
 
+		/*------------------------------------
+		   GENERATE FLOATING DIV FOR TARGET
+		   This may be removed in future updates pending testing. 
+		   -------------------------------------*/
+
+		new_html += "<div style= 'position: absolute; top: 100px; left: 150px; z-index: 10;'>";
+		var target_username = target_profile.substring( 0, target_profile.match(/_/).index );
+		new_html += "<p align='left' style='font-size:130%;'> Find this user: "+target_username+"</p></div>";
+		
 		/*------------------------------------
 		   GENERATE USER IMAGE CONTENT
 		   -------------------------------------*/
@@ -123,45 +137,77 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		}
 		new_html += "</div>";
 
-		//Generate finalizer button
+		/*------------------------------------
+		   GENERATE FINALIZER BUTTON
+		   -------------------------------------*/
+
 		new_html += "<br><br><br>";
+		var button_text = '';
+		var okay_to_proceed;
+		
+		/*-----------CODE FOR REQUIREMENT: MINIMUM NUM PROFILES VISITED-----------*/
+		
+		/* <-- Remove this to enable this section
+
 		//Get the number of uniquely visited users
 		var data = jsPsych.data.get().values();
-		var num_uniquely_visited_profiles = [];
+		var num_uniquely_visited_profiles = [trial.user];
 		for (i=1;i<data.length;i++){
 			if (data[i]['user'] != undefined){
 				num_uniquely_visited_profiles.push(data[i]['user']); 
 			}
 		}
-		//Unique-ifying the list
-		num_uniquely_visited_profiles = num_uniquely_visited_profiles.filter(function(val, i, arr) {return arr.indexOf(val) === i;}).length;
-
-		//Get the number of liked images
-		var data = jsPsych.data.get().values().map(a => a.liked_images).filter(function(n){ return n != undefined });
-		num_liked_images = data.flat().length;
 		
-		//Generating button text
-		var button_text = '';
-		var okay_to_proceed;
-		if (num_uniquely_visited_profiles < minimum_visits_to_stop){
-			button_text = num_uniquely_visited_profiles + " of " + minimum_visits_to_stop + " pages visited";
+		//Check if visited particular profiles
+		var required_profiles_maximum = 15; //This cannot be greater than the length of the previous
+		var required_profiles_visited = 0;
+		for (i=1;i<required_profiles.length;i++){
+			if (num_uniquely_visited_profiles.includes(required_profiles[i])){
+				required_profiles_visited++;
+			}
+		}
+		
+		//Unique-ifying the list
+		//num_uniquely_visited_profiles = num_uniquely_visited_profiles.filter(function(val, i, arr) {return arr.indexOf(val) === i;}).length;
+
+		//CODE FOR GETTING NUMBER OF LIKED IMAGES, if needed
+		// var data = jsPsych.data.get().values().map(a => a.liked_images).filter(function(n){ return n != undefined });
+		// num_liked_images = data.flat().length;
+		
+		//if (num_uniquely_visited_profiles < minimum_visits_to_stop){ //<--Not sure what this is anymore
+		//	button_text = num_uniquely_visited_profiles + " of " + minimum_visits_to_stop + " pages visited";
+
+		//AT THIS POINT THE CODE CHECKS IF MIN NUM PROFILES VISITED
+		if (required_profiles_visited < required_profiles_maximum){
+			button_text = required_profiles_visited + " of " + required_profiles_maximum + " required pages visited";
+			okay_to_proceed = false;
+		} else {
+			button_text = "Continue to survey!";
+			okay_to_proceed = true;
+		}
+
+		/*-----------CODE FOR REQUIREMENT: TARGET FOUND-----------*/
+		if (trial.user != target_profile){
+			button_text = "Keep searching!";
 			okay_to_proceed = false;
 		} else {
 			button_text = "Continue to survey!";
 			okay_to_proceed = true;
 		}
 		
+
+		//HTML for creating the button itself
 		new_html += "<button type='button' id='finalButton' style=' background-color: #9b9b9b;\
-    border: none;\
-    color: white;\
-    padding: 12px 28px;\
-    text-align: center;\
-    text-decoration: none;\
-    display: inline-block;\
-    font-size: 21px;\
-    margin: 4px 2px;\
-    cursor: pointer;\
-'>" + button_text + "</button>";
+					 border: none;\
+					 color: white;\
+					 padding: 12px 28px;\
+					 text-align: center;\
+					 text-decoration: none;\
+					 display: inline-block;\
+					 font-size: 21px;\
+					 margin: 4px 2px;\
+					 cursor: pointer;\
+				 '>" + button_text + "</button>";
 
 		/*---------------------
 		   PLUGIN FUNCTIONS
