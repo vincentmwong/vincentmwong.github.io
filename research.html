@@ -5,11 +5,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Lato:300i|Montserrat|Rubik" rel="stylesheet">
 	<style>
-	 img {
-	     border-radius: 50%;
-	     height: 30%;
-	 }
-
 	 p.nameplate {
 	     font-family: 'Rubik', sans-serif;
 	     font-size: 45px;
@@ -28,35 +23,87 @@
 	     font-family: 'Montserrat', sans-serif;
 	     font-size: 18px;
 	 }
+
+	.parallax {
+		/* Set a specific height */
+		height: 500px;
+
+		/* Create the parallax scrolling effect */
+		background-attachment: fixed;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.researchContent {
+		position:absolute; 
+		width:100%; 
+		background-color: white;
+	}
+
 	</style>
 	<title>Vincent Wong</title>
     </head>
     
     <body>
-	<div id="main_div" class='w3-animate-opacity' style="position:absolute; width:35%; margin-top: 5%;">
+
+   	<div class="parallax" style="background-image: url('test.png');background-position: center top;"></div>
+
+	<div class="researchContent" class='w3-animate-opacity'>
 	  <center>
-	    <p style="font-size: 20px;margin-top: 7%;"> 
-	    	1. Progressive Involvement in Communities on Social Media
+	    <p style="font-size: 20px;margin-top: 2%;"> 
+	    	Progressive Involvement in Communities on Social Media
 	    </p>
-
-	    <p style="font-size: 20px;margin-top: 7%;"> 
-	    	2. Social cognition on social networks
+	    <p style="width:50%;">
+	    	How do people change what they say as they get involved in a community? In this project, we look at how people's position in a network of interactions changes over time. Looking at a group of users on Twitter, we take the most active users -- those in the inner-most core of this network -- and compare them to those in the periphery. What's differences are there between these users in the content they post and share? <br> Stay in touch to find out!
 	    </p>
-
-	    <p style="font-size: 20px;margin-top: 7%;">
-	    	3. Evolving network structure for sharing solutions in fitness landscape
-	    </p>
-
-	    <br><br><br><br>
-	    <p style="font-size: 20px;margin-top: 7%;"> <-- <a href="index.html"> back </a></p>
 	  </center>
 	</div>
+
+   	<div class="parallax" style="background-image: url('test2.png');"></div>
+
+	<div class="researchContent" class='w3-animate-opacity'>
+	  <center>
+	    <p style="font-size: 20px;margin-top: 2%;"> 
+	    	Social cognition on social networks
+	    </p>
+	    <p style="width:50%;">
+	    	How is the perceptions of others affected by the social group structures around that person? Using a mock social media platform, participants navigate a social network and respond to survey questions about their impressions of the the social structure. We will compare their impressions it to the underlying social network to determine what real structures correspond with people's impressions of those structures.
+	    </p>
+	  </center>
+	</div>
+
+   	<div class="parallax" style="background-image: url('test3.png');"></div>
+
+	<div class="researchContent" class='w3-animate-opacity'>
+	  <center>
+	    <p style="font-size: 20px;margin-top: 2%;">
+	    	Evolving network structure for sharing solutions in fitness landscape
+	    </p>
+	    <p style="width:50%">
+	    	What sorts of group structures lead to the best and most innovative solutions? We simulate a network of individuals sharing solutions to try to solve a problem, and we alter the network structure that connects those individuals to look at how the structure impacts the fitness of the solutions that the group is able to find. This has implications for team science and innovation. 
+	    </p>
+	  </center>
+	</div>
+
+	   	<div class="parallax" style="background-image: url('test4.png');"></div>
+
+	<div class="researchContent" class='w3-animate-opacity'>
+	  <center>
+	    <p style="font-size: 20px;margin-top: 7%;"> <-- <a href="index.html"> back </a></p>
+	    <p style="font-size: 10px;margin-top: 1%;">
+	    	All art on this page is &copy; Vincent Wong 2019-2020
+	    </p>
+	  </center>
+	</div>
+
     </body>
 
-    <script>
+    <!-- <script>
      var main_div = document.getElementById("main_div");
      main_div.style.left = '50%';
      main_div.style.marginLeft = -1*main_div.offsetWidth/2;
-    </script>
+    </script> -->
 
 </html>
+	
