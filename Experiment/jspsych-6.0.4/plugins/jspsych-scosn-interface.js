@@ -17,6 +17,11 @@ jsPsych.plugins["scosn-interface"] = (function() {
 				pretty_name: 'Network',
 				default: undefined,
 				description: 'The network that the user is engaging with.'
+			},
+			targetnum: {
+				type: jsPsych.plugins.parameterType.INT,
+				default: undefined,
+				description: 'The target that the user is searching for.'
 			}
 		}
     }
@@ -82,7 +87,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		   -------------------------------------*/
 
 		new_html += "<div style= 'position: absolute; top: 100px; left: 150px; z-index: 10;'>";
-		var target_username = target_profile.substring( 0, target_profile.match(/_/).index );
+		var target_username = target_profile[trial.targetnum].substring( 0, target_profile[trial.targetnum].match(/_/).index );
 		new_html += "<p align='left' style='font-size:130%;'> Find this user: "+target_username+"</p></div>";
 		
 		/*------------------------------------
@@ -98,7 +103,7 @@ jsPsych.plugins["scosn-interface"] = (function() {
 
 		for (i=0;i<imp.length;i++){
 			val = imp[i];
-			new_html += "<img src='"+ folder + val +"' style='width:25%;height:auto;margin: 20px 20px;cursor: pointer;border-bottom: 7px solid;border-radius: 8px;' id="+val+" name='imageContent'>";
+			new_html += "<img src='"+ folder + val +"' style='width:25%;height:auto;margin: 20px 20px;border-bottom: 7px solid;border-radius: 8px;' id="+val+" name='imageContent'>";
 		}
 
 		// $.ajax({
@@ -187,12 +192,20 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		}
 
 		/*-----------CODE FOR REQUIREMENT: TARGET FOUND-----------*/
-		if (trial.user != target_profile){
+		var userhistory = jsPsych.data.get().values().map( a => a.user); //Get list of users
+		userhistory = userhistory.slice( userhistory.lastIndexOf(undefined));
+		userhistory.push(trial.user);
+		
+		if (!userhistory.includes(target_profile[trial.targetnum])){
 			button_text = "Keep searching!";
 			okay_to_proceed = false;
 		} else {
-			button_text = "Continue to survey!";
 			okay_to_proceed = true;
+			if (target_profile[trial.targetnum]==target_profile[target_profile.length-1]){
+				button_text = "Continue to survey!";
+			} else {
+				button_text = "Next search";
+			}
 		}
 		
 
@@ -255,7 +268,11 @@ jsPsych.plugins["scosn-interface"] = (function() {
 		} else {
 			finalbutton.style.backgroundColor = "#e59244";
 			finalbutton.addEventListener("click", function() {
-				if ( confirm("If you leave, you cannot return. Are you sure you'd like to leave the social network and go to the survey?") ){
+				if (target_profile[trial.targetnum]==target_profile[target_profile.length-1]){
+					if ( confirm("If you leave, you cannot return. Are you sure you'd like to leave the social network and go to the survey?") ){
+						end_trial();
+					}
+				} else {
 					end_trial();
 				}
 			}, false);
@@ -270,6 +287,12 @@ jsPsych.plugins["scosn-interface"] = (function() {
 			}, false);
 		}
 
+		//Set up next target functionality
+		var number_of_target_profiles = target_profile.length;
+		if (trial.targetnum < number_of_target_profiles - 1){
+			next_person = "newtarget";
+		}
+
 		//Set up previous user functionality
 		/*if (previous_user!=undefined && previous_user.user!=undefined){
 	       var prev_user_img = document.getElementById("prevUser");
@@ -281,25 +304,25 @@ jsPsych.plugins["scosn-interface"] = (function() {
 
 		//Set up image clicking behavior
 		var images = document.getElementsByName("imageContent");
-		var prev_likes = jsPsych.data.get().values().filter(obj=>obj.user===trial.user);
-		if (prev_likes.length > 0){
-			prev_likes = prev_likes[prev_likes.length - 1].liked_images;
-		}
-		for (i=0;i<images.length;i++){
-			if (prev_likes.includes(images[i].id)){
-				images[i].style.opacity=liked_image_opacity;
-				images[i].style.borderBottomColor = "green";
-			}
-			images[i].addEventListener("click", function() {
-				if (this.style.opacity==""){
-					this.style.opacity = liked_image_opacity;
-					this.style.borderBottomColor = "green";
-				} else if (this.style.opacity==liked_image_opacity){
-					this.style.opacity = "";
-					this.style.borderBottomColor = "black";
-		}
-	    }, false);
-	}
+		// var prev_likes = jsPsych.data.get().values().filter(obj=>obj.user===trial.user);
+		// if (prev_likes.length > 0){
+		// 	prev_likes = prev_likes[prev_likes.length - 1].liked_images;
+		// }
+		// for (i=0;i<images.length;i++){
+		// 	if (prev_likes.includes(images[i].id)){
+		// 		images[i].style.opacity=liked_image_opacity;
+		// 		images[i].style.borderBottomColor = "green";
+		// 	}
+		// 	images[i].addEventListener("click", function() {
+		// 		if (this.style.opacity==""){
+		// 			this.style.opacity = liked_image_opacity;
+		// 			this.style.borderBottomColor = "green";
+		// 		} else if (this.style.opacity==liked_image_opacity){
+		// 			this.style.opacity = "";
+		// 			this.style.borderBottomColor = "black";
+		// 		}
+		// 	}, false);
+		// }
     };
 
     return plugin;

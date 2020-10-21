@@ -1,2 +1,6 @@
-var target_profile = "4Dfloor_blank";
-var starting_profile = "StrikerZero_blank";
+var target_profile = [
+    "SunsetZephyr_blank",
+    "StrikerZero_blank",
+    "StriveDiver_blank"
+];
+var starting_profile = "ManiaDaze_blank";

@@ -1,110 +1,110 @@
 var comppagelist = [
     [
-        "CreekJump_blank",
-        "Dimple5_blank"
+        "ChildOfFire_blank",
+        "xGlory_blank"
     ],
     [
-        "Dimple5_blank",
-        "SunsetZephyr_blank"
+        "xGlory_blank",
+        "WanderLost_blank"
     ],
     [
-        "CreekJump_blank",
-        "WubWub_blank"
-    ],
-    [
-        "SunsetZephyr_blank",
-        "WubWub_blank"
-    ],
-    [
-        "WubWub_blank",
-        "HackerClue_blank"
-    ],
-    [
-        "HackerClue_blank",
-        "SatyrGate_blank"
-    ],
-    [
-        "SatyrGate_blank",
-        "CreekJump_blank"
-    ],
-    [
-        "SatyrGate_blank",
-        "2toneKing_blank"
-    ],
-    [
-        "2toneKing_blank",
-        "FlyStone_blank"
-    ],
-    [
-        "2toneKing_blank",
-        "RoiVert_blank"
-    ],
-    [
-        "RoiVert_blank",
-        "BeatnikDitty_blank"
-    ],
-    [
-        "BeatnikDitty_blank",
-        "FlyStone_blank"
-    ],
-    [
-        "BeatnikDitty_blank",
-        "Xalentor_blank"
+        "ChildOfFire_blank",
+        "Glimpse294_blank"
     ],
     [
         "WanderLost_blank",
-        "Xalentor_blank"
-    ],
-    [
-        "WanderLost_blank",
-        "Inchworm_blank"
-    ],
-    [
-        "Xalentor_blank",
-        "MeltyBats_blank"
-    ],
-    [
-        "MeltyBats_blank",
         "Glimpse294_blank"
     ],
     [
         "Glimpse294_blank",
-        "WanderLost_blank"
-    ],
-    [
-        "C4irn_blank",
-        "CookieBookie_blank"
-    ],
-    [
-        "SatyrGate_blank",
-        "deValencia_blank"
-    ],
-    [
-        "GeistBust_blank",
-        "CookieBookie_blank"
-    ],
-    [
-        "Spenderson_blank",
-        "xValor_blank"
-    ],
-    [
-        "RoiVert_blank",
-        "FromAshes_blank"
-    ],
-    [
-        "Shell12_blank",
-        "BL0CKTR4P_blank"
-    ],
-    [
-        "SquadjobGob_blank",
-        "RegnumAlya_blank"
+        "45Divide_blank"
     ],
     [
         "45Divide_blank",
-        "5DollarPool_blank"
+        "TempleOfTheDogs_blank"
     ],
     [
-        "Coffee987_blank",
-        "Alexazam_blank"
+        "TempleOfTheDogs_blank",
+        "ChildOfFire_blank"
+    ],
+    [
+        "TempleOfTheDogs_blank",
+        "Bashtion_blank"
+    ],
+    [
+        "Bashtion_blank",
+        "HackerClue_blank"
+    ],
+    [
+        "Bashtion_blank",
+        "TheVeryCore_blank"
+    ],
+    [
+        "TheVeryCore_blank",
+        "v2Karate_blank"
+    ],
+    [
+        "v2Karate_blank",
+        "HackerClue_blank"
+    ],
+    [
+        "v2Karate_blank",
+        "Zoe53_blank"
+    ],
+    [
+        "BurnPuppy_blank",
+        "Zoe53_blank"
+    ],
+    [
+        "BurnPuppy_blank",
+        "Dimple5_blank"
+    ],
+    [
+        "Zoe53_blank",
+        "SkeletonFan_blank"
+    ],
+    [
+        "SkeletonFan_blank",
+        "NewNerd_blank"
+    ],
+    [
+        "NewNerd_blank",
+        "BurnPuppy_blank"
+    ],
+    [
+        "Varelia_blank",
+        "Coffee987_blank"
+    ],
+    [
+        "TempleOfTheDogs_blank",
+        "BeatnikDitty_blank"
+    ],
+    [
+        "Alexazam_blank",
+        "Xalentor_blank"
+    ],
+    [
+        "MrShroud_blank",
+        "CookieBookie_blank"
+    ],
+    [
+        "TheVeryCore_blank",
+        "Xalentor_blank"
+    ],
+    [
+        "4Dfloor_blank",
+        "FaradayFire_blank"
+    ],
+    [
+        "StrikerZero_blank",
+        "Skyfox_blank"
+    ],
+    [
+        "PebbleCandy_blank",
+        "SatyrGate_blank"
+    ],
+    [
+        "SoundWolf_blank",
+        "Spike80_blank"
     ]
 ];

@@ -1,110 +1,110 @@
 var comppagelist = [
     [
-        "Fred2Day_blank",
+        "MrShroud_blank",
+        "BlanketHeart_blank"
+    ],
+    [
+        "BlanketHeart_blank",
+        "5TineFork_blank"
+    ],
+    [
+        "MrShroud_blank",
+        "4Dfloor_blank"
+    ],
+    [
+        "5TineFork_blank",
+        "4Dfloor_blank"
+    ],
+    [
+        "4Dfloor_blank",
+        "TwinCoastBoat_blank"
+    ],
+    [
+        "TwinCoastBoat_blank",
+        "Inchworm_blank"
+    ],
+    [
+        "Inchworm_blank",
+        "MrShroud_blank"
+    ],
+    [
+        "Inchworm_blank",
+        "WubWub_blank"
+    ],
+    [
+        "WubWub_blank",
+        "Turtinator_blank"
+    ],
+    [
+        "WubWub_blank",
+        "Memoralis8_blank"
+    ],
+    [
+        "Memoralis8_blank",
+        "Varelia_blank"
+    ],
+    [
+        "Varelia_blank",
+        "Turtinator_blank"
+    ],
+    [
+        "Varelia_blank",
+        "C4irn_blank"
+    ],
+    [
+        "Newtork_blank",
+        "C4irn_blank"
+    ],
+    [
+        "Newtork_blank",
+        "TheVeryCore_blank"
+    ],
+    [
+        "C4irn_blank",
+        "NewNerd_blank"
+    ],
+    [
+        "NewNerd_blank",
         "GeistBust_blank"
     ],
     [
         "GeistBust_blank",
-        "SoulJan_blank"
+        "Newtork_blank"
     ],
     [
-        "Fred2Day_blank",
-        "5DollarPool_blank"
+        "SkeletonFan_blank",
+        "N0R4_blank"
     ],
     [
-        "SoulJan_blank",
-        "5DollarPool_blank"
+        "Inchworm_blank",
+        "FaradayFire_blank"
     ],
     [
-        "5DollarPool_blank",
-        "MrShroud_blank"
-    ],
-    [
-        "MrShroud_blank",
-        "TiredChimes_blank"
+        "StrikerZero_blank",
+        "GlinkaFan10_blank"
     ],
     [
         "TiredChimes_blank",
-        "Fred2Day_blank"
+        "RegnumAlya_blank"
     ],
     [
-        "TiredChimes_blank",
+        "Memoralis8_blank",
         "GreyWay_blank"
     ],
     [
-        "GreyWay_blank",
-        "2toneKing_blank"
-    ],
-    [
-        "GreyWay_blank",
-        "JamFan56_blank"
-    ],
-    [
-        "JamFan56_blank",
-        "Spenderson_blank"
-    ],
-    [
-        "Spenderson_blank",
-        "2toneKing_blank"
-    ],
-    [
-        "Spenderson_blank",
-        "TunnelOfFire_blank"
-    ],
-    [
-        "Vicario_blank",
-        "TunnelOfFire_blank"
-    ],
-    [
-        "Vicario_blank",
+        "Nocturnez_blank",
         "Dimple5_blank"
     ],
     [
-        "TunnelOfFire_blank",
-        "Philanthropos_blank"
+        "ChildOfFire_blank",
+        "Aura_blank"
     ],
     [
-        "Philanthropos_blank",
-        "xValor_blank"
+        "xGlory_blank",
+        "Glimpse294_blank"
     ],
     [
-        "xValor_blank",
-        "Vicario_blank"
-    ],
-    [
-        "Legalend_blank",
-        "Shell12_blank"
-    ],
-    [
-        "TiredChimes_blank",
-        "Skyfox_blank"
-    ],
-    [
-        "SatyrGate_blank",
-        "v2Karate_blank"
-    ],
-    [
-        "CookieBookie_blank",
-        "Shell12_blank"
-    ],
-    [
-        "JamFan56_blank",
-        "TwrlGrl_blank"
-    ],
-    [
-        "Flick_blank",
-        "EagleSyndrome_blank"
-    ],
-    [
-        "RizuKing_blank",
-        "TeaTreatTime_blank"
-    ],
-    [
-        "RegnumAlya_blank",
-        "Zoe53_blank"
-    ],
-    [
-        "StriveDiver_blank",
-        "Coffee987_blank"
+        "Glimpse294_blank",
+        "OPTIC_blank"
     ]
 ];

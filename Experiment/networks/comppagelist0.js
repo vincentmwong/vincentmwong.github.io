@@ -1,110 +1,110 @@
 var comppagelist = [
     [
-        "RizuKing_blank",
-        "NewNerd_blank"
+        "BlanketHeart_blank",
+        "SunsetZephyr_blank"
     ],
     [
-        "NewNerd_blank",
-        "SoundWolf_blank"
+        "SunsetZephyr_blank",
+        "Memoralis8_blank"
     ],
     [
-        "RizuKing_blank",
-        "45Divide_blank"
+        "BlanketHeart_blank",
+        "FaradayFire_blank"
     ],
     [
-        "SoundWolf_blank",
-        "45Divide_blank"
+        "Memoralis8_blank",
+        "FaradayFire_blank"
     ],
     [
-        "45Divide_blank",
-        "Turtinator_blank"
+        "FaradayFire_blank",
+        "Flick_blank"
     ],
     [
-        "Turtinator_blank",
-        "Robcat_blank"
-    ],
-    [
-        "Robcat_blank",
-        "RizuKing_blank"
-    ],
-    [
-        "Robcat_blank",
-        "ClockStar_blank"
-    ],
-    [
-        "ClockStar_blank",
-        "BlanketHeart_blank"
-    ],
-    [
-        "ClockStar_blank",
-        "TheVeryCore_blank"
-    ],
-    [
-        "TheVeryCore_blank",
-        "SunderBar_blank"
-    ],
-    [
-        "SunderBar_blank",
-        "BlanketHeart_blank"
-    ],
-    [
-        "SunderBar_blank",
-        "TwrlGrl_blank"
-    ],
-    [
-        "C4irn_blank",
-        "TwrlGrl_blank"
-    ],
-    [
-        "C4irn_blank",
+        "Flick_blank",
         "FromAshes_blank"
     ],
     [
-        "TwrlGrl_blank",
-        "JamFan56_blank"
+        "FromAshes_blank",
+        "BlanketHeart_blank"
     ],
     [
-        "JamFan56_blank",
-        "WestonCreation_blank"
+        "FromAshes_blank",
+        "WubWub_blank"
     ],
     [
-        "WestonCreation_blank",
-        "C4irn_blank"
+        "WubWub_blank",
+        "TheMacabre_blank"
+    ],
+    [
+        "WubWub_blank",
+        "Coffee987_blank"
+    ],
+    [
+        "Coffee987_blank",
+        "StriveDiver_blank"
     ],
     [
         "StriveDiver_blank",
-        "OPTIC_blank"
+        "TheMacabre_blank"
     ],
     [
-        "Robcat_blank",
-        "TiredChimes_blank"
+        "StriveDiver_blank",
+        "ChildOfFire_blank"
     ],
     [
-        "Philanthropos_blank",
-        "WanderLost_blank"
+        "Shell12_blank",
+        "ChildOfFire_blank"
     ],
     [
-        "Newtork_blank",
-        "Aura_blank"
+        "Shell12_blank",
+        "GlareBear_blank"
     ],
     [
-        "TheVeryCore_blank",
-        "StrikerZero_blank"
+        "ChildOfFire_blank",
+        "Nocturnez_blank"
     ],
     [
-        "GreyWay_blank",
+        "Nocturnez_blank",
+        "Alexazam_blank"
+    ],
+    [
+        "Alexazam_blank",
         "Shell12_blank"
     ],
     [
-        "5DollarPool_blank",
-        "TeaTreatTime_blank"
+        "GeistBust_blank",
+        "Skyfox_blank"
     ],
     [
-        "2toneKing_blank",
-        "SkeletonFan_blank"
+        "FromAshes_blank",
+        "TheVeryCore_blank"
     ],
     [
-        "Fred2Day_blank",
+        "StrikerZero_blank",
+        "Zoe53_blank"
+    ],
+    [
+        "ClockStar_blank",
+        "Rickr6_blank"
+    ],
+    [
+        "Coffee987_blank",
         "PebbleCandy_blank"
+    ],
+    [
+        "RegnumAlya_blank",
+        "FlyStone_blank"
+    ],
+    [
+        "TiredChimes_blank",
+        "xGlory_blank"
+    ],
+    [
+        "GlinkaFan10_blank",
+        "Dimple5_blank"
+    ],
+    [
+        "RoiVert_blank",
+        "Limerick_blank"
     ]
 ];
